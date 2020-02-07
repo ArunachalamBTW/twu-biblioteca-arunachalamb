@@ -1,5 +1,6 @@
 package com.twu.biblioteca;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Library {
@@ -12,4 +13,11 @@ public class Library {
     public List<Book> getBooks() {
         return booksList;
     }
+
+    public List<String> getNamesOfAllBooks() {
+        List<String> bookNames = new ArrayList<>();
+
+        return bookNames;
+    }
+
 }
