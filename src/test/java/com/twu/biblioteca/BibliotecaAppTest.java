@@ -1,0 +1,31 @@
+package com.twu.biblioteca;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
+import static com.twu.biblioteca.CONSTANTS.WELCOME_MESSAGE;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+public class BibliotecaAppTest {
+
+    private final ByteArrayOutputStream consoleOutContent = new ByteArrayOutputStream();
+
+    @BeforeEach
+    public void setUpStreams() {
+        System.setOut(new PrintStream(consoleOutContent));
+    }
+
+    @Test
+    public void shouldReturnWelcomeMessage() {
+        assertEquals(WELCOME_MESSAGE, BibliotecaApp.displayWelcomeMessage());
+    }
+
+    @Test
+    public void shouldWriteWelcomeMessageToConsole() {
+        new BibliotecaApp().start();
+        assertEquals(WELCOME_MESSAGE+"\n", consoleOutContent.toString());
+    }
+}
