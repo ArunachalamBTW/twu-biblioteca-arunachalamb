@@ -10,14 +10,11 @@ public class Library {
         this.booksList = booksList;
     }
 
-    public List<Book> getBooks() {
-        return booksList;
+    public void displayAllBooks() {
+        int countOfBooks = 1;
+        for (Book book: booksList) {
+            System.out.print(countOfBooks++ + ". ");
+            book.displayName();
+        }
     }
-
-    public List<String> getNamesOfAllBooks() {
-        List<String> bookNames = new ArrayList<>();
-
-        return bookNames;
-    }
-
 }
