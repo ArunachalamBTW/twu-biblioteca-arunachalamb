@@ -20,10 +20,22 @@ class BookTest {
     @Test
     void shouldShowBookName() {
         String bookName = "Programming Book";
-        Book programmingBook = new Book(bookName);
+        Book programmingBook = new Book(bookName, 2000, "No Author");
 
         programmingBook.displayName();
 
         assertEquals(bookName, consoleOutContent.toString().trim());
+    }
+
+    @Test
+    void shouldShowBookDetails() {
+        String bookName = "Programming Book";
+        String authorName = "No Author";
+        int year = 2000;
+        Book programmingBook = new Book(bookName, year, authorName);
+
+        programmingBook.displayBookDetails();
+
+        assertEquals(bookName + "\t" + year + "\t" + authorName, consoleOutContent.toString().trim());
     }
 }

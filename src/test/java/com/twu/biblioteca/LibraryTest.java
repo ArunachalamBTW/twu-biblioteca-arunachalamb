@@ -19,8 +19,8 @@ public class LibraryTest {
 
     @Test
     void shouldShowAllBooksInALibrary() {
-        Book book1 = new Book("Programming Book 1");
-        Book book2 = new Book("Programming Book 2");
+        Book book1 = new Book("Programming Book 1", 2000, "Author Not Found");
+        Book book2 = new Book("Programming Book 2", 2001, "Author Not Found");
         Library library = new Library(Arrays.asList(book1, book2));
 
         library.displayAllBooks();
