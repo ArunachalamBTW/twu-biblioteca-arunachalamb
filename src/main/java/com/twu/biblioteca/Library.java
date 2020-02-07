@@ -14,7 +14,7 @@ public class Library {
         int countOfBooks = 1;
         for (Book book: booksList) {
             System.out.print(countOfBooks++ + ". ");
-            book.displayName();
+            book.displayBookDetails();
         }
     }
 }
