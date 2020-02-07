@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-import static com.twu.biblioteca.CONSTANTS.WELCOME_MESSAGE;
+import static com.twu.biblioteca.config.CONSTANTS.WELCOME_MESSAGE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BibliotecaAppTest {
@@ -26,6 +26,6 @@ public class BibliotecaAppTest {
     @Test
     public void shouldWriteWelcomeMessageToConsole() {
         new BibliotecaApp().start();
-        assertEquals(WELCOME_MESSAGE+"\n", consoleOutContent.toString());
+        assertEquals(WELCOME_MESSAGE, consoleOutContent.toString().trim());
     }
 }
