@@ -28,7 +28,7 @@ public class Library {
         for (Book book : booksList) {
             if (!checkOutBooks.contains(book) && book.isSameBookByName(bookName)) {
                 checkOutBooks.add(book);
-                System.out.println(SUCCESS_CHECKOUT_MESSAGE);
+                notifyUser(SUCCESS_CHECKOUT_MESSAGE);
                 return;
             }
         }
@@ -40,8 +40,14 @@ public class Library {
         for (Book book : checkOutBooks) {
             if (book.isSameBookByName(bookName)) {
                 checkOutBooks.remove(book);
+                notifyUser(SUCCESS_RETURN_MESSAGE);
                 return;
             }
         }
     }
+
+    public void notifyUser(String message) {
+        System.out.println(message);
+    }
+
 }
