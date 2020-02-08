@@ -2,6 +2,9 @@ package com.twu.biblioteca;
 
 import com.twu.biblioteca.config.CONSTANTS;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class BibliotecaApp {
 
     public static void main(String[] args) {
@@ -11,6 +14,26 @@ public class BibliotecaApp {
     void start() {
         displayWelcomeMessage();
         displayMenu();
+        processUserInput();
+    }
+
+    private void processUserInput() {
+        int userChoice = UserInput.getInputInstance().getIntegerInput();
+        switch (userChoice) {
+            case 1:
+                List<Book> defaultBooks = getDefaultBooks();
+                Library library = new Library(defaultBooks);
+                library.displayAllBooks();
+                break;
+            case 2:
+                break;
+        }
+    }
+
+    List<Book> getDefaultBooks() {
+        Book book1 = new Book("Programming Book 1", 2000, "Author Not Found");
+        Book book2 = new Book("Programming Book 2", 2001, "Author Not Found");
+        return Arrays.asList(book1, book2);
     }
 
     void displayWelcomeMessage() {
