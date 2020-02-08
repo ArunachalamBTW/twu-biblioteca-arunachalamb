@@ -6,6 +6,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
+import static com.twu.biblioteca.io.Screen.*;
+
 public class BibliotecaApp {
 
     private Library library;
@@ -24,6 +26,7 @@ public class BibliotecaApp {
         Scanner input = new Scanner(System.in);
         int userChoice = 0;
         boolean quit = false;
+
         while(!quit) {
             displayMenu();
             try { userChoice = input.nextInt(); } catch (Exception e) { input.nextLine(); }
@@ -45,6 +48,7 @@ public class BibliotecaApp {
                     break;
             }
         }
+
     }
 
     private void returnABook() {
@@ -57,10 +61,6 @@ public class BibliotecaApp {
         library.checkOutBook(new Scanner(System.in).nextLine());
     }
 
-    private void notifyUser(String message) {
-        System.out.println(message);
-    }
-
     private void initializeLibrary() {
         List<Book> defaultBooks = getDefaultBooks();
         library = new Library(defaultBooks);
@@ -70,13 +70,5 @@ public class BibliotecaApp {
         Book book1 = new Book("Programming Book 1", 2000, "Author Not Found");
         Book book2 = new Book("Programming Book 2", 2001, "Author Not Found");
         return Arrays.asList(book1, book2);
-    }
-
-    void displayWelcomeMessage() {
-        System.out.println(CONSTANTS.WELCOME_MESSAGE);
-    }
-
-    void displayMenu() {
-        System.out.println(CONSTANTS.MENU_OPTIONS);
     }
 }

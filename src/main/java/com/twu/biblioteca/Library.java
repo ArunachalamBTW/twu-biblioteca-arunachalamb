@@ -1,6 +1,8 @@
 package com.twu.biblioteca;
 
 import static com.twu.biblioteca.config.CONSTANTS.*;
+import static com.twu.biblioteca.io.Screen.displayMessage;
+import static com.twu.biblioteca.io.Screen.displayMessageOneLine;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +20,7 @@ public class Library {
         int countOfBooks = 1;
         for (Book book: booksList) {
             if (!checkOutBooks.contains(book)) {
-                System.out.print(countOfBooks++ + ". ");
+                displayMessageOneLine(countOfBooks++ + ". ");
                 book.displayBookDetails();
             }
         }
@@ -32,7 +34,7 @@ public class Library {
                 return;
             }
         }
-        System.out.println(FAIL_CHECKOUT_MESSAGE);
+        notifyUser(FAIL_CHECKOUT_MESSAGE);
     }
 
 
@@ -48,7 +50,7 @@ public class Library {
     }
 
     public void notifyUser(String message) {
-        System.out.println(message);
+        displayMessage(message);
     }
 
 }

@@ -30,18 +30,6 @@ public class BibliotecaAppTest {
     }
 
     @Test
-    public void shouldWriteWelcomeMessageToConsole() {
-        new BibliotecaApp().displayWelcomeMessage();
-        assertEquals(WELCOME_MESSAGE, consoleOutContent.toString().trim());
-    }
-
-    @Test
-    void shouldDisplayMenuOfOptionsToConsole() {
-        new BibliotecaApp().displayMenu();
-        assertEquals(MENU_OPTIONS.trim(), consoleOutContent.toString().trim());
-    }
-
-    @Test
     void shouldSelectFirstMenuOptionToListBooks() {
         InputStream sysInBackup = System.in; // backup System.in to restore it later
         ByteArrayInputStream input1 = new ByteArrayInputStream("1 4".getBytes());
