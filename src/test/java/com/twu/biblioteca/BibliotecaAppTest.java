@@ -38,7 +38,7 @@ public class BibliotecaAppTest {
     @Test
     void shouldDisplayMenuOfOptionsToConsole() {
         new BibliotecaApp().displayMenu();
-        assertEquals(MENU_OPTIONS, consoleOutContent.toString().trim());
+        assertEquals(MENU_OPTIONS.trim(), consoleOutContent.toString().trim());
     }
 
     @Test

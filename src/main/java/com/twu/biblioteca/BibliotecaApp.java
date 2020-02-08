@@ -22,11 +22,11 @@ public class BibliotecaApp {
 
     private void processUserInput() {
         Scanner input = new Scanner(System.in);
-        int userChoice;
+        int userChoice = 0;
         boolean quit = false;
         while(!quit) {
             displayMenu();
-            userChoice = input.nextInt();
+            try { userChoice = input.nextInt(); } catch (Exception e) { input.nextLine(); }
             switch (userChoice) {
                 case 1:
                     library.displayAllBooks();
@@ -66,7 +66,7 @@ public class BibliotecaApp {
         library = new Library(defaultBooks);
     }
 
-    List<Book> getDefaultBooks() {
+    private List<Book> getDefaultBooks() {
         Book book1 = new Book("Programming Book 1", 2000, "Author Not Found");
         Book book2 = new Book("Programming Book 2", 2001, "Author Not Found");
         return Arrays.asList(book1, book2);
