@@ -17,16 +17,17 @@ public class Library {
     public void displayAllBooks() {
         int countOfBooks = 1;
         for (Book book: booksList) {
-            System.out.print(countOfBooks++ + ". ");
-            book.displayBookDetails();
+            if (!checkOutBooks.contains(book)) {
+                System.out.print(countOfBooks++ + ". ");
+                book.displayBookDetails();
+            }
         }
     }
 
     public void checkOutBook(String bookName) {
         for (Book book : booksList) {
-            if (book.isSameBookByName(bookName)) {
+            if (!checkOutBooks.contains(book) && book.isSameBookByName(bookName)) {
                 checkOutBooks.add(book);
-                booksList.remove(book);
                 System.out.println(SUCCESS_CHECKOUT_MESSAGE);
                 return;
             }
@@ -34,4 +35,13 @@ public class Library {
         System.out.println(FAIL_CHECKOUT_MESSAGE);
     }
 
+
+    public void returnBook(String bookName) {
+        for (Book book : checkOutBooks) {
+            if (book.isSameBookByName(bookName)) {
+                checkOutBooks.remove(book);
+                return;
+            }
+        }
+    }
 }

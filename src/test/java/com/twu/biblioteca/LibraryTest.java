@@ -51,6 +51,19 @@ public class LibraryTest {
         assertEquals("1. Programming Book 1\t|\t2000\t|\tAuthor Not Found\n2. Programming Book 2\t|\t2001\t|\tAuthor Not Found\n" + CONSTANTS.FAIL_CHECKOUT_MESSAGE + "\n1. Programming Book 1\t|\t2000\t|\tAuthor Not Found\n2. Programming Book 2\t|\t2001\t|\tAuthor Not Found", consoleOutContent.toString().trim());
     }
 
+    @Test
+    void shouldReturnTheBookToTheLibrary() {
+        Library library = new Library(generateTempBooks());
+
+        library.displayAllBooks();
+        library.checkOutBook("Programming Book 1");
+        library.displayAllBooks();
+        library.returnBook("Programming Book 1");
+        library.displayAllBooks();
+
+        assertEquals("1. Programming Book 1\t|\t2000\t|\tAuthor Not Found\n2. Programming Book 2\t|\t2001\t|\tAuthor Not Found\n" + CONSTANTS.SUCCESS_CHECKOUT_MESSAGE + "\n1. Programming Book 2\t|\t2001\t|\tAuthor Not Found\n1. Programming Book 1\t|\t2000\t|\tAuthor Not Found\n2. Programming Book 2\t|\t2001\t|\tAuthor Not Found", consoleOutContent.toString().trim());
+    }
+
     public List<Book> generateTempBooks() {
         Book book1 = new Book("Programming Book 1", 2000, "Author Not Found");
         Book book2 = new Book("Programming Book 2", 2001, "Author Not Found");
