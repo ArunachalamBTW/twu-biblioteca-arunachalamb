@@ -1,6 +1,6 @@
 package com.twu.biblioteca;
 
-import com.twu.biblioteca.config.CONSTANTS;
+import static com.twu.biblioteca.config.CONSTANTS.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,9 +27,11 @@ public class Library {
             if (book.isSameBookByName(bookName)) {
                 checkOutBooks.add(book);
                 booksList.remove(book);
-                System.out.println(CONSTANTS.CHECKOUT_SUCCESS_MESSAGE);
+                System.out.println(SUCCESS_CHECKOUT_MESSAGE);
+                return;
             }
         }
+        System.out.println(FAIL_CHECKOUT_MESSAGE);
     }
 
 }
