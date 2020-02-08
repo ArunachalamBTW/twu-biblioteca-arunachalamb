@@ -38,7 +38,7 @@ public class BibliotecaAppTest {
 
         bibliotecaApp.start();
 
-        assertEquals(WELCOME_MESSAGE + "\n" + MENU_OPTIONS + "\n" + defaultBooksListString() + "\n" + MENU_OPTIONS, consoleOutContent.toString().trim());
+        assertEquals(WELCOME_MESSAGE + NEW_LINE + MENU_OPTIONS + NEW_LINE + defaultBooksListString() + NEW_LINE + MENU_OPTIONS, consoleOutContent.toString().trim());
         System.setIn(sysInBackup);
     }
 
@@ -51,13 +51,13 @@ public class BibliotecaAppTest {
 
         bibliotecaApp.start();
 
-        assertEquals(WELCOME_MESSAGE + "\n" + MENU_OPTIONS + "\n" + INVALID_OPTION + "\n" + MENU_OPTIONS, consoleOutContent.toString().trim());
+        assertEquals(WELCOME_MESSAGE + NEW_LINE + MENU_OPTIONS + NEW_LINE + INVALID_OPTION + NEW_LINE + MENU_OPTIONS, consoleOutContent.toString().trim());
         System.setIn(sysInBackup);
     }
 
     public String defaultBooksListString() {
-        return "1. Programming Book 1\t|\t2000\t|\tAuthor Not Found\n" +
-                "2. Programming Book 2\t|\t2001\t|\tAuthor Not Found";
+        return "1. Programming Book 1" + BOOK_DETAILS_SEPARATORS + "2000" + BOOK_DETAILS_SEPARATORS + "Author Not Found\n" +
+                "2. Programming Book 2" + BOOK_DETAILS_SEPARATORS + "2001" + BOOK_DETAILS_SEPARATORS + "Author Not Found";
     }
 
 }

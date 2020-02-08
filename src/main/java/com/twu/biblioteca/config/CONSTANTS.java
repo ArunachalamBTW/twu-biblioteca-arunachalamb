@@ -8,4 +8,7 @@ public class CONSTANTS {
     public static final String FAIL_CHECKOUT_MESSAGE = "Sorry, that book is not available";
     public static final String SUCCESS_RETURN_MESSAGE = "Thank you for returning the book";
     public static final String FAIL_RETURN_MESSAGE = "That is not a valid book to return";
+    public static final String BOOK_DETAILS_SEPARATORS = "\t|\t";
+    public static final String NEW_LINE = "\n";
+    public static final String TAB_SPACE = "\t";
 }

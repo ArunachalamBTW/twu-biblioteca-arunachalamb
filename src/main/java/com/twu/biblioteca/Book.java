@@ -1,5 +1,6 @@
 package com.twu.biblioteca;
 
+import static com.twu.biblioteca.config.CONSTANTS.*;
 import static com.twu.biblioteca.io.Screen.displayMessage;
 
 public class Book {
@@ -18,7 +19,7 @@ public class Book {
     }
 
     public void displayBookDetails() {
-        displayMessage(name + "\t|\t" + year + "\t|\t" + author);
+        displayMessage(name + BOOK_DETAILS_SEPARATORS + year + BOOK_DETAILS_SEPARATORS + author);
     }
 
     public boolean isSameBookByName(String bookName) {

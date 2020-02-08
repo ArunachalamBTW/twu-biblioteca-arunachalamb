@@ -26,7 +26,7 @@ public class LibraryTest {
 
         library.displayAllBooks();
 
-        assertEquals("1. Programming Book 1\t|\t2000\t|\tAuthor Not Found\n2. Programming Book 2\t|\t2001\t|\tAuthor Not Found", consoleOutContent.toString().trim());
+        assertEquals(defaultBooksListString(), consoleOutContent.toString().trim());
     }
 
     @Test
@@ -37,7 +37,7 @@ public class LibraryTest {
         library.checkOutBook("Programming Book 1");
         library.displayAllBooks();
 
-        assertEquals("1. Programming Book 1\t|\t2000\t|\tAuthor Not Found\n2. Programming Book 2\t|\t2001\t|\tAuthor Not Found\n" + SUCCESS_CHECKOUT_MESSAGE + "\n1. Programming Book 2\t|\t2001\t|\tAuthor Not Found", consoleOutContent.toString().trim());
+        assertEquals(defaultBooksListString() + NEW_LINE + SUCCESS_CHECKOUT_MESSAGE + NEW_LINE + getSecondBookString(), consoleOutContent.toString().trim());
     }
 
     @Test
@@ -48,7 +48,7 @@ public class LibraryTest {
         library.checkOutBook("Random Book");
         library.displayAllBooks();
 
-        assertEquals("1. Programming Book 1\t|\t2000\t|\tAuthor Not Found\n2. Programming Book 2\t|\t2001\t|\tAuthor Not Found\n" + FAIL_CHECKOUT_MESSAGE + "\n1. Programming Book 1\t|\t2000\t|\tAuthor Not Found\n2. Programming Book 2\t|\t2001\t|\tAuthor Not Found", consoleOutContent.toString().trim());
+        assertEquals(defaultBooksListString() + NEW_LINE + FAIL_CHECKOUT_MESSAGE + NEW_LINE + defaultBooksListString(), consoleOutContent.toString().trim());
     }
 
     @Test
@@ -62,7 +62,7 @@ public class LibraryTest {
         library.returnBook(programmingBook);
         library.displayAllBooks();
 
-        assertEquals("1. Programming Book 1\t|\t2000\t|\tAuthor Not Found\n2. Programming Book 2\t|\t2001\t|\tAuthor Not Found\n" + SUCCESS_CHECKOUT_MESSAGE + "\n1. Programming Book 2\t|\t2001\t|\tAuthor Not Found\n" + SUCCESS_RETURN_MESSAGE + "\n1. Programming Book 1\t|\t2000\t|\tAuthor Not Found\n2. Programming Book 2\t|\t2001\t|\tAuthor Not Found", consoleOutContent.toString().trim());
+        assertEquals(defaultBooksListString() + NEW_LINE + SUCCESS_CHECKOUT_MESSAGE + NEW_LINE + getSecondBookString() + NEW_LINE + SUCCESS_RETURN_MESSAGE + NEW_LINE + defaultBooksListString(), consoleOutContent.toString().trim());
     }
 
     @Test
@@ -77,7 +77,7 @@ public class LibraryTest {
         library.returnBook(wrongBook);
         library.displayAllBooks();
 
-        assertEquals("1. Programming Book 1\t|\t2000\t|\tAuthor Not Found\n2. Programming Book 2\t|\t2001\t|\tAuthor Not Found\n" + SUCCESS_CHECKOUT_MESSAGE + "\n1. Programming Book 2\t|\t2001\t|\tAuthor Not Found\n" + FAIL_RETURN_MESSAGE + "\n1. Programming Book 2\t|\t2001\t|\tAuthor Not Found", consoleOutContent.toString().trim());
+        assertEquals(defaultBooksListString() + NEW_LINE + SUCCESS_CHECKOUT_MESSAGE + NEW_LINE + getSecondBookString() + NEW_LINE + FAIL_RETURN_MESSAGE + NEW_LINE + getSecondBookString(), consoleOutContent.toString().trim());
     }
 
     public List<Book> generateTempBooks() {
@@ -87,6 +87,19 @@ public class LibraryTest {
         books.add(book1);
         books.add(book2);
         return books;
+    }
+
+    public String defaultBooksListString() {
+        return "1. Programming Book 1" + BOOK_DETAILS_SEPARATORS + "2000" + BOOK_DETAILS_SEPARATORS + "Author Not Found\n" +
+                "2. Programming Book 2" + BOOK_DETAILS_SEPARATORS + "2001" + BOOK_DETAILS_SEPARATORS + "Author Not Found";
+    }
+
+    public String getFirstBookString() {
+        return "1. Programming Book 1" + BOOK_DETAILS_SEPARATORS + "2000" + BOOK_DETAILS_SEPARATORS + "Author Not Found";
+    }
+
+    public String getSecondBookString() {
+        return "1. Programming Book 2" + BOOK_DETAILS_SEPARATORS + "2001" + BOOK_DETAILS_SEPARATORS + "Author Not Found";
     }
 
 }
