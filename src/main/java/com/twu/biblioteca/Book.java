@@ -16,7 +16,7 @@ public class Book {
     }
 
     public void displayBookDetails() {
-        System.out.println(name+"\t"+year+"\t"+author);
+        System.out.println(name+"\t|\t"+year+"\t|\t"+author);
     }
 
 }

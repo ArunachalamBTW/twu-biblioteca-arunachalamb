@@ -36,6 +36,6 @@ class BookTest {
 
         programmingBook.displayBookDetails();
 
-        assertEquals(bookName + "\t" + year + "\t" + authorName, consoleOutContent.toString().trim());
+        assertEquals(bookName + "\t|\t" + year + "\t|\t" + authorName, consoleOutContent.toString().trim());
     }
 }

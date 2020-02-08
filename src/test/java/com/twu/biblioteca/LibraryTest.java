@@ -25,6 +25,6 @@ public class LibraryTest {
 
         library.displayAllBooks();
 
-        assertEquals("1. Programming Book 1\t2000\tAuthor Not Found\n2. Programming Book 2\t2001\tAuthor Not Found", consoleOutContent.toString().trim());
+        assertEquals("1. Programming Book 1\t|\t2000\t|\tAuthor Not Found\n2. Programming Book 2\t|\t2001\t|\tAuthor Not Found", consoleOutContent.toString().trim());
     }
 }

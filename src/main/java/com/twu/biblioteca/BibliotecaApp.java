@@ -11,6 +11,9 @@ public class BibliotecaApp {
 
     void start() {
         System.out.println(displayWelcomeMessage());
+
+
+
     }
 
     public static String displayWelcomeMessage() {
