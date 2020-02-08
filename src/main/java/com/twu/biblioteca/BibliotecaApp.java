@@ -4,6 +4,7 @@ import com.twu.biblioteca.config.CONSTANTS;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 
 public class BibliotecaApp {
 
@@ -18,7 +19,7 @@ public class BibliotecaApp {
     }
 
     private void processUserInput() {
-        int userChoice = UserInput.getInputInstance().getIntegerInput();
+        int userChoice = new Scanner(System.in).nextInt();
         switch (userChoice) {
             case 1:
                 List<Book> defaultBooks = getDefaultBooks();
@@ -27,7 +28,14 @@ public class BibliotecaApp {
                 break;
             case 2:
                 break;
+            default:
+                notifyUser(CONSTANTS.INVALID_OPTION);
+                break;
         }
+    }
+
+    private void notifyUser(String invalidMessage) {
+        System.out.println(invalidMessage);
     }
 
     List<Book> getDefaultBooks() {

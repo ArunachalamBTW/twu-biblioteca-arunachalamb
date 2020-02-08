@@ -1,5 +1,6 @@
 package com.twu.biblioteca;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -8,17 +9,24 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
 
-import static com.twu.biblioteca.config.CONSTANTS.MENU_OPTIONS;
-import static com.twu.biblioteca.config.CONSTANTS.WELCOME_MESSAGE;
+import static com.twu.biblioteca.config.CONSTANTS.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BibliotecaAppTest {
 
-    private final ByteArrayOutputStream consoleOutContent = new ByteArrayOutputStream();
+    private ByteArrayOutputStream consoleOutContent;
+    private PrintStream printStream;
 
     @BeforeEach
     public void setUpStreams() {
+        printStream = System.out;
+        consoleOutContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(consoleOutContent));
+    }
+
+    @AfterEach
+    public void setOutStreams() {
+        System.setOut(printStream);
     }
 
     @Test
@@ -37,13 +45,25 @@ public class BibliotecaAppTest {
     void shouldSelectFirstMenuOptionToListBooks() {
         InputStream sysInBackup = System.in; // backup System.in to restore it later
         ByteArrayInputStream in = new ByteArrayInputStream("1".getBytes());
-
         System.setIn(in);
-
         BibliotecaApp bibliotecaApp = new BibliotecaApp();
+
         bibliotecaApp.start();
 
-        assertEquals(WELCOME_MESSAGE + "\n" + MENU_OPTIONS+"\n"+defaultBooksListString(), consoleOutContent.toString().trim());
+        assertEquals(WELCOME_MESSAGE + "\n" + MENU_OPTIONS + "\n" + defaultBooksListString(), consoleOutContent.toString().trim());
+        System.setIn(sysInBackup);
+    }
+
+    @Test
+    void shouldNotifyWhenInvalidOptionIsSelected() {
+        InputStream sysInBackup = System.in;
+        ByteArrayInputStream in = new ByteArrayInputStream("3".getBytes());
+        System.setIn(in);
+        BibliotecaApp bibliotecaApp = new BibliotecaApp();
+
+        bibliotecaApp.start();
+
+        assertEquals(WELCOME_MESSAGE + "\n" + MENU_OPTIONS + "\n" + INVALID_OPTION, consoleOutContent.toString().trim());
         System.setIn(sysInBackup);
     }
 
