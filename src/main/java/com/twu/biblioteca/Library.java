@@ -44,6 +44,7 @@ public class Library {
                 return;
             }
         }
+        notifyUser(FAIL_RETURN_MESSAGE);
     }
 
     public void notifyUser(String message) {

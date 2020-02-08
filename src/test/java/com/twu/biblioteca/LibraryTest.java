@@ -1,6 +1,6 @@
 package com.twu.biblioteca;
 
-import com.twu.biblioteca.config.CONSTANTS;
+import static com.twu.biblioteca.config.CONSTANTS.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -37,7 +37,7 @@ public class LibraryTest {
         library.checkOutBook("Programming Book 1");
         library.displayAllBooks();
 
-        assertEquals("1. Programming Book 1\t|\t2000\t|\tAuthor Not Found\n2. Programming Book 2\t|\t2001\t|\tAuthor Not Found\n" + CONSTANTS.SUCCESS_CHECKOUT_MESSAGE + "\n1. Programming Book 2\t|\t2001\t|\tAuthor Not Found", consoleOutContent.toString().trim());
+        assertEquals("1. Programming Book 1\t|\t2000\t|\tAuthor Not Found\n2. Programming Book 2\t|\t2001\t|\tAuthor Not Found\n" + SUCCESS_CHECKOUT_MESSAGE + "\n1. Programming Book 2\t|\t2001\t|\tAuthor Not Found", consoleOutContent.toString().trim());
     }
 
     @Test
@@ -48,7 +48,7 @@ public class LibraryTest {
         library.checkOutBook("Random Book");
         library.displayAllBooks();
 
-        assertEquals("1. Programming Book 1\t|\t2000\t|\tAuthor Not Found\n2. Programming Book 2\t|\t2001\t|\tAuthor Not Found\n" + CONSTANTS.FAIL_CHECKOUT_MESSAGE + "\n1. Programming Book 1\t|\t2000\t|\tAuthor Not Found\n2. Programming Book 2\t|\t2001\t|\tAuthor Not Found", consoleOutContent.toString().trim());
+        assertEquals("1. Programming Book 1\t|\t2000\t|\tAuthor Not Found\n2. Programming Book 2\t|\t2001\t|\tAuthor Not Found\n" + FAIL_CHECKOUT_MESSAGE + "\n1. Programming Book 1\t|\t2000\t|\tAuthor Not Found\n2. Programming Book 2\t|\t2001\t|\tAuthor Not Found", consoleOutContent.toString().trim());
     }
 
     @Test
@@ -62,7 +62,22 @@ public class LibraryTest {
         library.returnBook(programmingBook);
         library.displayAllBooks();
 
-        assertEquals("1. Programming Book 1\t|\t2000\t|\tAuthor Not Found\n2. Programming Book 2\t|\t2001\t|\tAuthor Not Found\n" + CONSTANTS.SUCCESS_CHECKOUT_MESSAGE + "\n1. Programming Book 2\t|\t2001\t|\tAuthor Not Found\n" + CONSTANTS.SUCCESS_RETURN_MESSAGE + "\n1. Programming Book 1\t|\t2000\t|\tAuthor Not Found\n2. Programming Book 2\t|\t2001\t|\tAuthor Not Found", consoleOutContent.toString().trim());
+        assertEquals("1. Programming Book 1\t|\t2000\t|\tAuthor Not Found\n2. Programming Book 2\t|\t2001\t|\tAuthor Not Found\n" + SUCCESS_CHECKOUT_MESSAGE + "\n1. Programming Book 2\t|\t2001\t|\tAuthor Not Found\n" + SUCCESS_RETURN_MESSAGE + "\n1. Programming Book 1\t|\t2000\t|\tAuthor Not Found\n2. Programming Book 2\t|\t2001\t|\tAuthor Not Found", consoleOutContent.toString().trim());
+    }
+
+    @Test
+    void shouldNotReturnAWrongBook() {
+        String programmingBook = "Programming Book 1";
+        String wrongBook = "Prog Book 1";
+        Library library = new Library(generateTempBooks());
+
+        library.displayAllBooks();
+        library.checkOutBook(programmingBook);
+        library.displayAllBooks();
+        library.returnBook(wrongBook);
+        library.displayAllBooks();
+
+        assertEquals("1. Programming Book 1\t|\t2000\t|\tAuthor Not Found\n2. Programming Book 2\t|\t2001\t|\tAuthor Not Found\n" + SUCCESS_CHECKOUT_MESSAGE + "\n1. Programming Book 2\t|\t2001\t|\tAuthor Not Found\n" + FAIL_RETURN_MESSAGE + "\n1. Programming Book 2\t|\t2001\t|\tAuthor Not Found", consoleOutContent.toString().trim());
     }
 
     public List<Book> generateTempBooks() {
