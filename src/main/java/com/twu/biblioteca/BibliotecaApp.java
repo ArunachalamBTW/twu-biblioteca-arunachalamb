@@ -10,10 +10,14 @@ public class BibliotecaApp {
 
     void start() {
         displayWelcomeMessage();
+        displayMenu();
     }
 
-    private static void displayWelcomeMessage() {
+    void displayWelcomeMessage() {
         System.out.println(CONSTANTS.WELCOME_MESSAGE);
     }
 
+    void displayMenu() {
+        System.out.println(CONSTANTS.MENU_OPTIONS);
+    }
 }
