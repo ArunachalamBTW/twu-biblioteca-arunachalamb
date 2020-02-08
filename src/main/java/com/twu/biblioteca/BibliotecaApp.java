@@ -35,14 +35,21 @@ public class BibliotecaApp {
                     checkOutABook();
                     break;
                 case 3:
+                    returnABook();
+                    break;
+                case 4:
                     quit = true;
                     break;
                 default:
                     notifyUser(CONSTANTS.INVALID_OPTION);
-                    displayMenu();
                     break;
             }
         }
+    }
+
+    private void returnABook() {
+        notifyUser("Enter a book name: ");
+        library.returnBook(new Scanner(System.in).nextLine());
     }
 
     private void checkOutABook() {
