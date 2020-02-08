@@ -21,8 +21,10 @@ public class Book {
     }
 
     public void checkOut() {
-
-        isCheckedOut = true;
+        if (!isCheckedOut) {
+            isCheckedOut = true;
+            System.out.println("Thank you! Enjoy the book");
+        }
     }
 
 }

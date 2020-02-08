@@ -48,4 +48,13 @@ class BookTest {
 
         verify(book, times(1)).checkOut();
     }
+
+    @Test
+    void shouldShowSuccessStatusInConsoleWhenABookIsCheckedOutSuccessfully() {
+        Book book = new Book("Programming Book 1", 2000, "Author Not Defined");
+
+        book.checkOut();
+
+        assertEquals("Thank you! Enjoy the book", consoleOutContent.toString().trim());
+    }
 }
