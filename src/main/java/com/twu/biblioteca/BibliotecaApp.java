@@ -6,18 +6,14 @@ public class BibliotecaApp {
 
     public static void main(String[] args) {
         new BibliotecaApp().start();
-//        System.out.println(displayWelcomeMessage());
     }
 
     void start() {
-        System.out.println(displayWelcomeMessage());
-
-
-
+        displayWelcomeMessage();
     }
 
-    public static String displayWelcomeMessage() {
-        return CONSTANTS.WELCOME_MESSAGE;
+    private static void displayWelcomeMessage() {
+        System.out.println(CONSTANTS.WELCOME_MESSAGE);
     }
 
 }

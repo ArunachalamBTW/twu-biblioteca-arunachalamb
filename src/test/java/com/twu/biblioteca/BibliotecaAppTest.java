@@ -19,12 +19,7 @@ public class BibliotecaAppTest {
     }
 
     @Test
-    public void shouldReturnWelcomeMessage() {
-        assertEquals(WELCOME_MESSAGE, BibliotecaApp.displayWelcomeMessage());
-    }
-
-    @Test
-    public void shouldWriteWelcomeMessageToConsole() {
+    public void shouldWriteWelcomeMessageToConsoleWhenTheAppIsStart() {
         new BibliotecaApp().start();
         assertEquals(WELCOME_MESSAGE, consoleOutContent.toString().trim());
     }
