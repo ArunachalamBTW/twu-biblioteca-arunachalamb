@@ -19,18 +19,25 @@ public class BibliotecaApp {
     }
 
     private void processUserInput() {
-        int userChoice = new Scanner(System.in).nextInt();
-        switch (userChoice) {
-            case 1:
-                List<Book> defaultBooks = getDefaultBooks();
-                Library library = new Library(defaultBooks);
-                library.displayAllBooks();
-                break;
-            case 2:
-                break;
-            default:
-                notifyUser(CONSTANTS.INVALID_OPTION);
-                break;
+        Scanner input = new Scanner(System.in);
+        int userChoice;
+        boolean quit = false;
+        while(!quit) {
+            userChoice = input.nextInt();
+            switch (userChoice) {
+                case 1:
+                    List<Book> defaultBooks = getDefaultBooks();
+                    Library library = new Library(defaultBooks);
+                    library.displayAllBooks();
+                    break;
+                case 2:
+                    quit = true;
+                    break;
+                default:
+                    notifyUser(CONSTANTS.INVALID_OPTION);
+                    displayMenu();
+                    break;
+            }
         }
     }
 
