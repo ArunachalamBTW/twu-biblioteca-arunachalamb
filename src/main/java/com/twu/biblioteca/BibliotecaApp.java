@@ -8,13 +8,15 @@ import java.util.Scanner;
 
 public class BibliotecaApp {
 
+    private Library library;
+
     public static void main(String[] args) {
         new BibliotecaApp().start();
     }
 
     void start() {
+        initializeLibrary();
         displayWelcomeMessage();
-        displayMenu();
         processUserInput();
     }
 
@@ -23,14 +25,16 @@ public class BibliotecaApp {
         int userChoice;
         boolean quit = false;
         while(!quit) {
+            displayMenu();
             userChoice = input.nextInt();
             switch (userChoice) {
                 case 1:
-                    List<Book> defaultBooks = getDefaultBooks();
-                    Library library = new Library(defaultBooks);
                     library.displayAllBooks();
                     break;
                 case 2:
+                    checkOutABook();
+                    break;
+                case 3:
                     quit = true;
                     break;
                 default:
@@ -41,8 +45,18 @@ public class BibliotecaApp {
         }
     }
 
-    private void notifyUser(String invalidMessage) {
-        System.out.println(invalidMessage);
+    private void checkOutABook() {
+        notifyUser("Enter a book name: ");
+        library.checkOutBook(new Scanner(System.in).nextLine());
+    }
+
+    private void notifyUser(String message) {
+        System.out.println(message);
+    }
+
+    private void initializeLibrary() {
+        List<Book> defaultBooks = getDefaultBooks();
+        library = new Library(defaultBooks);
     }
 
     List<Book> getDefaultBooks() {
