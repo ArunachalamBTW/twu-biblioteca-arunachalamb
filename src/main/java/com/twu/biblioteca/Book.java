@@ -1,9 +1,10 @@
 package com.twu.biblioteca;
 
 public class Book {
-    String name;
-    int year;
-    String author;
+    private String name;
+    private int year;
+    private String author;
+    private boolean isCheckedOut = false;
 
     public Book(String name, int year, String author) {
         this.name = name;
@@ -17,6 +18,11 @@ public class Book {
 
     public void displayBookDetails() {
         System.out.println(name+"\t|\t"+year+"\t|\t"+author);
+    }
+
+    public void checkOut() {
+
+        isCheckedOut = true;
     }
 
 }

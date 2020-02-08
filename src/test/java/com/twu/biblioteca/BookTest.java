@@ -7,6 +7,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 class BookTest {
 
@@ -37,5 +38,14 @@ class BookTest {
         programmingBook.displayBookDetails();
 
         assertEquals(bookName + "\t|\t" + year + "\t|\t" + authorName, consoleOutContent.toString().trim());
+    }
+
+    @Test
+    void shouldCheckOutABook() {
+        Book book = mock(Book.class);
+
+        book.checkOut();
+
+        verify(book, times(1)).checkOut();
     }
 }
