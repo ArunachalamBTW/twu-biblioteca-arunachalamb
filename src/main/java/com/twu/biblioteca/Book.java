@@ -21,4 +21,7 @@ public class Book {
         System.out.println(name + "\t|\t" + year + "\t|\t" + author);
     }
 
+    public boolean isSameBookByName(String bookName) {
+        return name.equals(bookName);
+    }
 }

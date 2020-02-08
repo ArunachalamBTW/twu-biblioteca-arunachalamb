@@ -41,6 +41,22 @@ class BookTest {
         assertEquals(bookName + "\t|\t" + year + "\t|\t" + authorName, consoleOutContent.toString().trim());
     }
 
+    @Test
+    void shouldReturnTrueForBookWithSameName() {
+        String randomBook = "Random Book 1234";
+        Book book = generateRandomBook(1234);
+
+        assertTrue(book.isSameBookByName(randomBook));
+    }
+
+    @Test
+    void shouldReturnFalseForBookWithDifferentName() {
+        String randomBookName = "Random Book 5678";
+        Book book = generateRandomBook(1234);
+
+        assertFalse(book.isSameBookByName(randomBookName));
+    }
+
     public Book generateRandomBook(int random) {
         return new Book("Random Book " + random, random, "Author " + random);
     }
