@@ -1,5 +1,7 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.io.Input;
+
 import static com.twu.biblioteca.config.CONSTANTS.*;
 
 import java.util.Arrays;
@@ -26,13 +28,12 @@ public class BibliotecaApp {
     }
 
     private void processUserInput() {
-        Scanner input = new Scanner(System.in);
         int userChoice = 0;
         boolean quit = false;
 
         while(!quit) {
             displayMenu();
-            try { userChoice = input.nextInt(); } catch (Exception e) { input.nextLine(); }
+            try { userChoice = Input.createInstance().getIntegerInput(); } catch (Exception e) { Input.createInstance().getStringInput(); }
             switch (userChoice) {
                 case MAIN_MENU_DISPLAY_ALL_BOOKS:
                     library.displayAllBooks();
