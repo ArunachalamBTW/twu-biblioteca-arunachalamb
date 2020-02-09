@@ -12,12 +12,15 @@ public class BibliotecaApp {
 
     private Library library;
 
+    public BibliotecaApp() {
+        initializeLibrary();
+    }
+
     public static void main(String[] args) {
         new BibliotecaApp().start();
     }
 
     void start() {
-        initializeLibrary();
         displayWelcomeMessage();
         processUserInput();
     }
