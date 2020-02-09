@@ -1,6 +1,6 @@
 package com.twu.biblioteca;
 
-import com.twu.biblioteca.config.CONSTANTS;
+import static com.twu.biblioteca.config.CONSTANTS.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -34,20 +34,20 @@ public class BibliotecaApp {
             displayMenu();
             try { userChoice = input.nextInt(); } catch (Exception e) { input.nextLine(); }
             switch (userChoice) {
-                case 1:
+                case MAIN_MENU_DISPLAY_ALL_BOOKS:
                     library.displayAllBooks();
                     break;
-                case 2:
+                case MAIN_MENU_CHECKOUT_A_BOOK:
                     checkOutABook();
                     break;
-                case 3:
+                case MAIN_MENU_RETURN_A_BOOK:
                     returnABook();
                     break;
-                case 4:
+                case MAIN_MENU_QUIT:
                     quit = true;
                     break;
                 default:
-                    notifyUser(CONSTANTS.INVALID_OPTION);
+                    notifyUser(INVALID_OPTION);
                     break;
             }
         }
