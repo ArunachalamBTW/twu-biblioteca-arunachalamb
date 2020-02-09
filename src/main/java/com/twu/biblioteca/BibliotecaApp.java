@@ -57,12 +57,12 @@ public class BibliotecaApp {
 
     private void returnABook() {
         notifyUser("Enter a book name: ");
-        library.returnBook(new Scanner(System.in).nextLine());
+        library.returnBook(Input.createInstance().getStringInput());
     }
 
     private void checkOutABook() {
         notifyUser("Enter a book name: ");
-        library.checkOutBook(new Scanner(System.in).nextLine());
+        library.checkOutBook(Input.createInstance().getStringInput());
     }
 
     private void initializeLibrary() {

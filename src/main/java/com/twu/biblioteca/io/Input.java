@@ -2,6 +2,8 @@ package com.twu.biblioteca.io;
 
 import java.util.Scanner;
 
+import static com.twu.biblioteca.config.CONSTANTS.NEW_LINE;
+
 public class Input {
     private static Input input;
     private static Scanner scanner;
@@ -9,8 +11,8 @@ public class Input {
     private Input() {}
 
     public static Input createInstance() {
+        input = new Input();
         if (scanner == null) {
-            input = new Input();
             scanner = new Scanner(System.in);
         }
         return input;
@@ -19,10 +21,11 @@ public class Input {
     public static void reset() {
         scanner.close();
         scanner = null;
+        input = null;
     }
 
     public int getIntegerInput() {
-        return scanner.nextInt();
+        return Integer.parseInt(scanner.nextLine());
     }
 
     public String getStringInput() {
