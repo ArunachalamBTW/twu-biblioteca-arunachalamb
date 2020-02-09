@@ -1,6 +1,7 @@
 package com.twu.biblioteca;
 
 import static com.twu.biblioteca.config.CONSTANTS.*;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -24,45 +25,49 @@ public class LibraryTest {
     void shouldShowAllBooksInALibrary() {
         Library library = new Library(generateTempBooks());
 
-        library.displayAllBooks();
-
-        assertEquals(defaultBooksListString(), consoleOutContent.toString().trim());
+        assertEquals(defaultBooksListString(), library.displayAllBooks().trim());
     }
 
     @Test
     void shouldCheckOutBookWithSameName() {
         Library library = new Library(generateTempBooks());
+        String bookDetails = "";
 
-        library.displayAllBooks();
+        bookDetails += library.displayAllBooks();
         library.checkOutBook("Programming Book 1");
-        library.displayAllBooks();
+        bookDetails += library.displayAllBooks();
 
-        assertEquals(defaultBooksListString() + NEW_LINE + SUCCESS_CHECKOUT_MESSAGE + NEW_LINE + getSecondBookString(), consoleOutContent.toString().trim());
+        assertEquals(SUCCESS_CHECKOUT_MESSAGE, consoleOutContent.toString().trim());
+        assertEquals(defaultBooksListString() + NEW_LINE + getSecondBookString(), bookDetails.trim());
     }
 
     @Test
     void shouldFailWhenWithSameNameIsNotFound() {
         Library library = new Library(generateTempBooks());
+        String bookDetails = "";
 
-        library.displayAllBooks();
+        bookDetails += library.displayAllBooks();
         library.checkOutBook("Random Book");
-        library.displayAllBooks();
+        bookDetails += library.displayAllBooks();
 
-        assertEquals(defaultBooksListString() + NEW_LINE + FAIL_CHECKOUT_MESSAGE + NEW_LINE + defaultBooksListString(), consoleOutContent.toString().trim());
+        assertEquals(FAIL_CHECKOUT_MESSAGE, consoleOutContent.toString().trim());
+        assertEquals(defaultBooksListString() + NEW_LINE + defaultBooksListString(), bookDetails.trim());
     }
 
     @Test
     void shouldReturnTheBookToTheLibrary() {
         String programmingBook = "Programming Book 1";
         Library library = new Library(generateTempBooks());
+        String bookDetails = "";
 
-        library.displayAllBooks();
+        bookDetails += library.displayAllBooks();
         library.checkOutBook(programmingBook);
-        library.displayAllBooks();
+        bookDetails += library.displayAllBooks();
         library.returnBook(programmingBook);
-        library.displayAllBooks();
+        bookDetails += library.displayAllBooks();
 
-        assertEquals(defaultBooksListString() + NEW_LINE + SUCCESS_CHECKOUT_MESSAGE + NEW_LINE + getSecondBookString() + NEW_LINE + SUCCESS_RETURN_MESSAGE + NEW_LINE + defaultBooksListString(), consoleOutContent.toString().trim());
+        assertEquals(SUCCESS_CHECKOUT_MESSAGE + NEW_LINE + SUCCESS_RETURN_MESSAGE, consoleOutContent.toString().trim());
+        assertEquals(defaultBooksListString() + NEW_LINE + getSecondBookString() + NEW_LINE + defaultBooksListString(), bookDetails.trim());
     }
 
     @Test
@@ -70,14 +75,16 @@ public class LibraryTest {
         String programmingBook = "Programming Book 1";
         String wrongBook = "Prog Book 1";
         Library library = new Library(generateTempBooks());
+        String bookDetails = "";
 
-        library.displayAllBooks();
+        bookDetails += library.displayAllBooks();
         library.checkOutBook(programmingBook);
-        library.displayAllBooks();
+        bookDetails += library.displayAllBooks();
         library.returnBook(wrongBook);
-        library.displayAllBooks();
+        bookDetails += library.displayAllBooks();
 
-        assertEquals(defaultBooksListString() + NEW_LINE + SUCCESS_CHECKOUT_MESSAGE + NEW_LINE + getSecondBookString() + NEW_LINE + FAIL_RETURN_MESSAGE + NEW_LINE + getSecondBookString(), consoleOutContent.toString().trim());
+        assertEquals(SUCCESS_CHECKOUT_MESSAGE + NEW_LINE + FAIL_RETURN_MESSAGE, consoleOutContent.toString().trim());
+        assertEquals(defaultBooksListString() + NEW_LINE + getSecondBookString() + NEW_LINE + getSecondBookString(), bookDetails.trim());
     }
 
     public List<Book> generateTempBooks() {

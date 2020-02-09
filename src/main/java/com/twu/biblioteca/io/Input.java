@@ -2,13 +2,12 @@ package com.twu.biblioteca.io;
 
 import java.util.Scanner;
 
-import static com.twu.biblioteca.config.CONSTANTS.NEW_LINE;
-
 public class Input {
     private static Input input;
     private static Scanner scanner;
 
-    private Input() {}
+    private Input() {
+    }
 
     public static Input createInstance() {
         input = new Input();

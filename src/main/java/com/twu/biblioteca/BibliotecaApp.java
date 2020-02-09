@@ -31,9 +31,13 @@ public class BibliotecaApp {
         int userChoice = 0;
         boolean quit = false;
 
-        while(!quit) {
+        while (!quit) {
             displayMenu();
-            try { userChoice = Input.createInstance().getIntegerInput(); } catch (Exception e) { Input.createInstance().getStringInput(); }
+            try {
+                userChoice = Input.createInstance().getIntegerInput();
+            } catch (Exception e) {
+                Input.createInstance().getStringInput();
+            }
             switch (userChoice) {
                 case MAIN_MENU_DISPLAY_ALL_BOOKS:
                     library.displayAllBooks();

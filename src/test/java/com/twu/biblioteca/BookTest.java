@@ -7,7 +7,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
 import static com.twu.biblioteca.config.CONSTANTS.*;
 
 class BookTest {
@@ -24,9 +23,7 @@ class BookTest {
         String bookName = "Programming Book";
         Book programmingBook = new Book(bookName, 2000, "No Author");
 
-        programmingBook.displayName();
-
-        assertEquals(bookName, consoleOutContent.toString().trim());
+        assertEquals(bookName, programmingBook.getName());
     }
 
     @Test
@@ -36,9 +33,7 @@ class BookTest {
         int year = 2000;
         Book programmingBook = new Book(bookName, year, authorName);
 
-        programmingBook.displayBookDetails();
-
-        assertEquals(bookName + BOOK_DETAILS_SEPARATORS + year + BOOK_DETAILS_SEPARATORS + authorName, consoleOutContent.toString().trim());
+        assertEquals(bookName + BOOK_DETAILS_SEPARATORS + year + BOOK_DETAILS_SEPARATORS + authorName, programmingBook.getBookDetails());
     }
 
     @Test

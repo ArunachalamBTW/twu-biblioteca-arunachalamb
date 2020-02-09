@@ -2,7 +2,6 @@ package com.twu.biblioteca;
 
 import static com.twu.biblioteca.config.CONSTANTS.*;
 import static com.twu.biblioteca.io.Screen.displayMessage;
-import static com.twu.biblioteca.io.Screen.displayMessageOneLine;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,14 +15,17 @@ public class Library {
         this.checkOutBooks = new ArrayList<>();
     }
 
-    public void displayAllBooks() {
+    public String displayAllBooks() {
+        StringBuilder allBookDetails = new StringBuilder();
         int countOfBooks = 1;
-        for (Book book: booksList) {
+        for (Book book : booksList) {
+            String bookDetails = "";
             if (!checkOutBooks.contains(book)) {
-                displayMessageOneLine(countOfBooks++ + ". ");
-                book.displayBookDetails();
+                bookDetails += countOfBooks++ + ". " + book.getBookDetails() + NEW_LINE;
             }
+            allBookDetails.append(bookDetails);
         }
+        return allBookDetails.toString();
     }
 
     public void checkOutBook(String bookName) {

@@ -40,7 +40,7 @@ public class BibliotecaAppTest {
 
         bibliotecaApp.start();
 
-        assertEquals(WELCOME_MESSAGE + NEW_LINE + MENU_OPTIONS + NEW_LINE + defaultBooksListString() + NEW_LINE + MENU_OPTIONS, consoleOutContent.toString().trim());
+        assertEquals(WELCOME_MESSAGE + NEW_LINE + MENU_OPTIONS + NEW_LINE + MENU_OPTIONS, consoleOutContent.toString().trim());
         System.setIn(sysInBackup);
     }
 

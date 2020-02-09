@@ -1,6 +1,5 @@
 package com.twu.biblioteca.io;
 
-import com.twu.biblioteca.BibliotecaApp;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

@@ -31,7 +31,6 @@ class InputTest {
         InputStream sysInBackup = System.in;
         ByteArrayInputStream input1 = new ByteArrayInputStream(String.valueOf(magicNumber).getBytes());
         System.setIn(input1);
-//        int number = new Input().getIntegerInput();
         int number = Input.createInstance().getIntegerInput();
 
         assertEquals(number, magicNumber);
@@ -44,7 +43,6 @@ class InputTest {
         InputStream sysInBackup = System.in;
         ByteArrayInputStream input1 = new ByteArrayInputStream(magicString.getBytes());
         System.setIn(input1);
-//        String hello = new Input().getStringInput();
         String hello = Input.createInstance().getStringInput();
 
         assertEquals(hello, magicString);
