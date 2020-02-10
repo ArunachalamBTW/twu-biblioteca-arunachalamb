@@ -1,6 +1,6 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.controller;
 
-import com.twu.biblioteca.io.Input;
+import com.twu.biblioteca.console.Input;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

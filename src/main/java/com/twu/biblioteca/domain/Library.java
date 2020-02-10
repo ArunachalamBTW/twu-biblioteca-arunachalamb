@@ -1,7 +1,7 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.domain;
 
 import static com.twu.biblioteca.config.CONSTANTS.*;
-import static com.twu.biblioteca.io.Screen.displayMessage;
+import static com.twu.biblioteca.console.Screen.displayMessage;
 
 import java.util.ArrayList;
 import java.util.List;

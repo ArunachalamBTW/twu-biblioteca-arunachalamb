@@ -1,7 +1,9 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.domain;
 
 import static com.twu.biblioteca.config.CONSTANTS.*;
 
+import com.twu.biblioteca.domain.Book;
+import com.twu.biblioteca.domain.Library;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

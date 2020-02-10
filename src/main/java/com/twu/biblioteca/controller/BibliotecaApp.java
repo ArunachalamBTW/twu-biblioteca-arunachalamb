@@ -1,14 +1,15 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.controller;
 
-import com.twu.biblioteca.io.Input;
+import com.twu.biblioteca.domain.Book;
+import com.twu.biblioteca.domain.Library;
+import com.twu.biblioteca.console.Input;
 
 import static com.twu.biblioteca.config.CONSTANTS.*;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 
-import static com.twu.biblioteca.io.Screen.*;
+import static com.twu.biblioteca.console.Screen.*;
 
 public class BibliotecaApp {
 

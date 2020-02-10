@@ -1,4 +1,4 @@
-package com.twu.biblioteca.io;
+package com.twu.biblioteca.console;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
