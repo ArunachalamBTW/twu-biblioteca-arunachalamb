@@ -7,20 +7,20 @@ import static com.twu.biblioteca.config.CONSTANTS.*;
 import static com.twu.biblioteca.console.Screen.displayMessage;
 
 public class Library {
-    private List<Book> booksList; // TODO - name - BOOKS - Confusing as well. Is this list of all books? List of unchecked books?
-    private List<Book> checkOutBooks; // TODO - name again - probably will use past tense
+    private List<Book> books; // TODO - name - BOOKS - Confusing as well. Is this list of all books? List of unchecked books?
+    private List<Book> checkedOutBooks; // TODO - name again - probably will use past tense
 
-    public Library(List<Book> booksList) {
-        this.booksList = booksList;
-        this.checkOutBooks = new ArrayList<>();
+    public Library(List<Book> books) {
+        this.books = books;
+        this.checkedOutBooks = new ArrayList<>();
     }
 
-    public String displayAllBooks() { // TODO - what's display? Liar. // TODO - why ALL?
+    public String getBooks() { // TODO - what's display? Liar. // TODO - why ALL?
         StringBuilder allBookDetails = new StringBuilder();
         int countOfBooks = 1;
-        for (Book book : booksList) {
+        for (Book book : books) {
             String bookDetails = "";
-            if (!checkOutBooks.contains(book)) {
+            if (!checkedOutBooks.contains(book)) {
                 bookDetails += countOfBooks++ + ". " + book.getDetails() + NEW_LINE;
             }
             allBookDetails.append(bookDetails);
@@ -29,11 +29,14 @@ public class Library {
     }
 
     // TODO - checkout is probably one word
-    public void checkOutBook(String bookName) { // TODO - name again. What else will I checkout from library? Libraian?
+    public void checkout(String bookName) { // TODO - name again. What else will I checkout from library? Libraian?
         // TODO - read about streams, and try to use implicit loops - But don't spend too much time.
-        for (Book book : booksList) { // TODO - can we get rid of the loop? - When I say this, I mean explicit loop.
-            if (!checkOutBooks.contains(book) && book.isSameByName(bookName)) { // TODO - can you name your conditions?
-                checkOutBooks.add(book);
+//        Book checkoutBook = books.stream().filter(book -> book.isSameByName(bookName)).filter(book -> !checkedOutBooks.contains(book)).findFirst();
+        for (Book book : books) { // TODO - can we get rid of the loop? - When I say this, I mean explicit loop.
+            boolean isBookAvailable = !checkedOutBooks.contains(book);
+            boolean isSameBook = book.isSameByName(bookName);
+            if (isBookAvailable && isSameBook) { // TODO - can you name your conditions?
+                checkedOutBooks.add(book);
                 notifyUser(SUCCESS_CHECKOUT_MESSAGE);
                 return;
             }
@@ -43,9 +46,10 @@ public class Library {
 
 
     public void returnBook(String bookName) {
-        for (Book book : checkOutBooks) {
-            if (book.isSameByName(bookName)) {
-                checkOutBooks.remove(book);
+        for (Book book : checkedOutBooks) {
+            boolean isSameBook = book.isSameByName(bookName);
+            if (isSameBook) {
+                checkedOutBooks.remove(book);
                 notifyUser(SUCCESS_RETURN_MESSAGE);
                 return;
             }

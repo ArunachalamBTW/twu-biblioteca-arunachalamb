@@ -34,26 +34,28 @@ public class BibliotecaAppTest {
     @Test
     void shouldSelectFirstMenuOptionToListBooks() {
         InputStream sysInBackup = System.in; // backup System.in to restore it later
-        ByteArrayInputStream input1 = new ByteArrayInputStream("1\n4".getBytes());
+        String input = "1" + NEW_LINE + "4";
+        ByteArrayInputStream input1 = new ByteArrayInputStream(input.getBytes());
         System.setIn(input1);
         BibliotecaApp bibliotecaApp = new BibliotecaApp();
 
         bibliotecaApp.start();
 
-        assertEquals(WELCOME_MESSAGE + NEW_LINE + MENU_OPTIONS + NEW_LINE + MENU_OPTIONS, consoleOutContent.toString().trim());
+        assertEquals(WELCOME_MESSAGE + NEW_LINE + MENU_OPTIONS + NEW_LINE + defaultBooksListString() + NEW_LINE + NEW_LINE + MENU_OPTIONS + NEW_LINE, consoleOutContent.toString());
         System.setIn(sysInBackup);
     }
 
     @Test
     void shouldNotifyWhenInvalidOptionIsSelected() {
         InputStream sysInBackup = System.in;
-        ByteArrayInputStream input1 = new ByteArrayInputStream("9\n4".getBytes());
+        String input = "9" + NEW_LINE + "4";
+        ByteArrayInputStream input1 = new ByteArrayInputStream(input.getBytes());
         System.setIn(input1);
         BibliotecaApp bibliotecaApp = new BibliotecaApp();
 
         bibliotecaApp.start();
 
-        assertEquals(WELCOME_MESSAGE + NEW_LINE + MENU_OPTIONS + NEW_LINE + INVALID_OPTION + NEW_LINE + MENU_OPTIONS, consoleOutContent.toString().trim());
+        assertEquals(WELCOME_MESSAGE + NEW_LINE + MENU_OPTIONS + NEW_LINE + INVALID_OPTION + NEW_LINE + MENU_OPTIONS + NEW_LINE, consoleOutContent.toString());
         System.setIn(sysInBackup);
     }
 

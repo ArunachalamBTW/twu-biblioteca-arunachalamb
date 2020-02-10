@@ -6,7 +6,7 @@ import com.twu.biblioteca.console.Input;
 
 import static com.twu.biblioteca.config.CONSTANTS.*;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.twu.biblioteca.console.Screen.*;
@@ -36,14 +36,10 @@ public class BibliotecaApp {
 
         while (!quit) {
             displayMenu();
-            try {
-                userChoice = Input.createInstance().getIntegerInput();
-            } catch (Exception e) {
-//                Input.createInstance().getStringInput(); // TODO - why? NO TDD. No test fails.
-            }
+            userChoice = Input.createInstance().getIntegerInput();
             switch (userChoice) {
                 case MAIN_MENU_DISPLAY_ALL_BOOKS:
-                    library.displayAllBooks(); // TODO - how are the books being printed?
+                    displayMessage(library.getBooks()); // TODO - how are the books being printed?
                     break;
                 case MAIN_MENU_CHECKOUT_A_BOOK:
                     checkOutABook();
@@ -69,17 +65,20 @@ public class BibliotecaApp {
 
     private void checkOutABook() {
         notifyUser("Enter a book name: ");
-        library.checkOutBook(Input.createInstance().getStringInput());
+        library.checkout(Input.createInstance().getStringInput());
     }
 
     private void initializeLibrary() {
-        List<Book> defaultBooks = getDefaultBooks(); // TODO - why not inline?
-        library = new Library(defaultBooks);
+        // TODO - why not inline?
+        library = new Library(getDefaultBooks());
     }
 
     private List<Book> getDefaultBooks() {
         Book book1 = new Book("Programming Book 1", 2000, "Martin Fowler");
         Book book2 = new Book("Programming Book 2", 2001, "Martin Fowler");
-        return Arrays.asList(book1, book2);
+        List<Book> books = new ArrayList<>();
+        books.add(book1);
+        books.add(book2);
+        return books;
     }
 }
