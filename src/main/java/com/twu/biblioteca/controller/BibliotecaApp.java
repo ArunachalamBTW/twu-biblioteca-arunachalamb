@@ -11,13 +11,14 @@ import java.util.List;
 
 import static com.twu.biblioteca.console.Screen.*;
 
+// TODO - think about - SRP, OCP for this class. List it down.
 public class BibliotecaApp {
 
     private Library library;
 
     public BibliotecaApp() {
         initializeLibrary();
-//        Use Menu implementation here
+//        Use Menu implementation here - TODO what does that mean? Try doing it and show it again.
     }
 
     public static void main(String[] args) {
@@ -25,7 +26,7 @@ public class BibliotecaApp {
     }
 
     void start() {
-        displayWelcomeMessage();
+        displayWelcomeMessage(); // TODO - come back to this
         processUserInput();
     }
 
@@ -38,11 +39,11 @@ public class BibliotecaApp {
             try {
                 userChoice = Input.createInstance().getIntegerInput();
             } catch (Exception e) {
-                Input.createInstance().getStringInput();
+//                Input.createInstance().getStringInput(); // TODO - why? NO TDD. No test fails.
             }
             switch (userChoice) {
                 case MAIN_MENU_DISPLAY_ALL_BOOKS:
-                    library.displayAllBooks();
+                    library.displayAllBooks(); // TODO - how are the books being printed?
                     break;
                 case MAIN_MENU_CHECKOUT_A_BOOK:
                     checkOutABook();
@@ -72,7 +73,7 @@ public class BibliotecaApp {
     }
 
     private void initializeLibrary() {
-        List<Book> defaultBooks = getDefaultBooks();
+        List<Book> defaultBooks = getDefaultBooks(); // TODO - why not inline?
         library = new Library(defaultBooks);
     }
 

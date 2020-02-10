@@ -24,21 +24,21 @@ public class LibraryTest {
     }
 
     @Test
-    void shouldShowAllBooksInALibrary() {
-        Library library = new Library(generateTempBooks());
+    void shouldShowAllBooksInALibrary() { // TODO - is this the simplest test?
+        Library library = new Library(generateTempBooks()); // TODO - intent behind helper method is probably good, however its creating more problem then helping at this point in time.
 
-        assertEquals(defaultBooksListString(), library.displayAllBooks().trim());
+        assertEquals(defaultBooksListString(), library.displayAllBooks().trim()); // TODO - why trim? Apple does not fall. Change your physics.
     }
 
     @Test
     void shouldCheckOutBookWithSameName() {
         Library library = new Library(generateTempBooks());
         String bookDetails = "";
-
         bookDetails += library.displayAllBooks();
+
         library.checkOutBook("Programming Book 1");
-        bookDetails += library.displayAllBooks();
 
+        bookDetails += library.displayAllBooks();
         assertEquals(SUCCESS_CHECKOUT_MESSAGE, consoleOutContent.toString().trim());
         assertEquals(defaultBooksListString() + NEW_LINE + getSecondBookString(), bookDetails.trim());
     }
@@ -89,7 +89,7 @@ public class LibraryTest {
         assertEquals(defaultBooksListString() + NEW_LINE + getSecondBookString() + NEW_LINE + getSecondBookString(), bookDetails.trim());
     }
 
-    public List<Book> generateTempBooks() {
+    public List<Book> generateTempBooks() { // TODO - temp is a horrible word. Why generate? Why not get? Why not just, twoDifferentBooks() ? Why is this a method? - Helper method? Why not simply a static constant?
         Book book1 = new Book("Programming Book 1", 2000, "Author Not Found");
         Book book2 = new Book("Programming Book 2", 2001, "Author Not Found");
         List<Book> books = new ArrayList<>();

@@ -9,7 +9,7 @@ public class Input {
     private Input() {
     }
 
-    public static Input createInstance() {
+    public static Input createInstance() { // TODO - used as a static factory, seems good
         input = new Input();
         if (scanner == null) {
             scanner = new Scanner(System.in);

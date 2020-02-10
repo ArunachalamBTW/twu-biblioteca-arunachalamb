@@ -12,7 +12,7 @@ import static com.twu.biblioteca.config.CONSTANTS.*;
 
 class BookTest {
 
-    private final ByteArrayOutputStream consoleOutContent = new ByteArrayOutputStream(); // TODO - ouch.
+    private final ByteArrayOutputStream consoleOutContent = new ByteArrayOutputStream(); // TODO - ouch. - Double ouch. Unnecessary confusing code.
 
     @BeforeEach
     public void setUpStreams() {

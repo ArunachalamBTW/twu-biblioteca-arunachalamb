@@ -8,7 +8,7 @@ public class Screen {
     }
 
     public static void displayMenu() {
-        System.out.println(CONSTANTS.MENU_OPTIONS);
+        System.out.println(CONSTANTS.MENU_OPTIONS); // TODO - static imports
     }
 
     public static void notifyUser(String message) {
