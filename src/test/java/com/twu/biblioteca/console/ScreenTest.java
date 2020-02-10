@@ -6,9 +6,8 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-import static com.twu.biblioteca.config.CONSTANTS.MENU_OPTIONS;
-import static com.twu.biblioteca.config.CONSTANTS.WELCOME_MESSAGE;
-import static org.junit.jupiter.api.Assertions.*;
+import static com.twu.biblioteca.console.ConsoleConstants.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ScreenTest {
 

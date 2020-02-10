@@ -1,6 +1,6 @@
 package com.twu.biblioteca.domain;
 
-import static com.twu.biblioteca.config.CONSTANTS.*;
+import static com.twu.biblioteca.config.GlobalConstants.*;
 
 public class Book {
     private String name;

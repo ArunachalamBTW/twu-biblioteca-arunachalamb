@@ -4,7 +4,8 @@ import com.twu.biblioteca.domain.Book;
 import com.twu.biblioteca.domain.Library;
 import com.twu.biblioteca.console.Input;
 
-import static com.twu.biblioteca.config.CONSTANTS.*;
+import static com.twu.biblioteca.config.GlobalConstants.*;
+import static com.twu.biblioteca.controller.ControllerConstants.*;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -3,7 +3,8 @@ package com.twu.biblioteca.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.twu.biblioteca.config.CONSTANTS.*;
+import static com.twu.biblioteca.domain.DomainConstants.*;
+import static com.twu.biblioteca.config.GlobalConstants.*;
 import static com.twu.biblioteca.console.Screen.displayMessage;
 
 public class Library {

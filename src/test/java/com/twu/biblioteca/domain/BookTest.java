@@ -3,7 +3,7 @@ package com.twu.biblioteca.domain;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static com.twu.biblioteca.config.CONSTANTS.*;
+import static com.twu.biblioteca.config.GlobalConstants.*;
 
 class BookTest {
 

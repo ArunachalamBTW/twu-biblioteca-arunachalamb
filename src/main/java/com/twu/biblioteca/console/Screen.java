@@ -1,14 +1,14 @@
 package com.twu.biblioteca.console;
 
-import com.twu.biblioteca.config.CONSTANTS;
+import static com.twu.biblioteca.console.ConsoleConstants.*;
 
 public class Screen {
     public static void displayWelcomeMessage() {
-        System.out.println(CONSTANTS.WELCOME_MESSAGE);
+        System.out.println(WELCOME_MESSAGE);
     }
 
     public static void displayMenu() {
-        System.out.println(CONSTANTS.MENU_OPTIONS); // TODO - static imports
+        System.out.println(MENU_OPTIONS); // TODO - static imports
     }
 
     public static void notifyUser(String message) {

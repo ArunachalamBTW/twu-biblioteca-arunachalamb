@@ -10,7 +10,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
 
-import static com.twu.biblioteca.config.CONSTANTS.*;
+import static com.twu.biblioteca.config.GlobalConstants.*;
+import static com.twu.biblioteca.console.ConsoleConstants.*;
+import static com.twu.biblioteca.controller.ControllerConstants.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BibliotecaAppTest {

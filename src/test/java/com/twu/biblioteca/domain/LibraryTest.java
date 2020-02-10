@@ -1,6 +1,6 @@
 package com.twu.biblioteca.domain;
 
-import static com.twu.biblioteca.config.CONSTANTS.*;
+import static com.twu.biblioteca.config.GlobalConstants.*;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,6 +13,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import static com.twu.biblioteca.domain.DomainConstants.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class LibraryTest {
