@@ -13,7 +13,7 @@ public class Book {
         this.author = author;
     }
 
-    public String getName() {
+    public String getName() { // TODO - why does this method even exist?
         return name;
     }
 
@@ -21,10 +21,12 @@ public class Book {
         return name + separators + year + separators + author;
     }
 
+    // TODO - unnecessary `book inside getBookDetails
     public String getBookDetails() {
         return getBookDetails(BOOK_DETAILS_SEPARATORS);
     }
 
+    // TODO - call it, isSimilar is possible. However hard. isSameByName
     public boolean isSameBookByName(String bookName) {
         return name.equals(bookName);
     }
