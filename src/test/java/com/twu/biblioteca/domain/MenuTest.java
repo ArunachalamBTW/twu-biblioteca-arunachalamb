@@ -1,7 +1,6 @@
 package com.twu.biblioteca.domain;
 
 import com.twu.biblioteca.console.Input;
-import com.twu.biblioteca.controller.BibliotecaApp;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,7 +17,6 @@ import java.util.List;
 import static com.twu.biblioteca.config.GlobalConstants.BOOK_DETAILS_SEPARATORS;
 import static com.twu.biblioteca.config.GlobalConstants.NEW_LINE;
 import static com.twu.biblioteca.console.ConsoleConstants.MENU_OPTIONS;
-import static com.twu.biblioteca.console.ConsoleConstants.WELCOME_MESSAGE;
 import static com.twu.biblioteca.controller.ControllerConstants.INVALID_OPTION;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -51,7 +49,7 @@ class MenuTest {
 
     @Test
     void shouldSelectFirstMenuOptionToListBooks() {
-        InputStream sysInBackup = System.in; // backup System.in to restore it later
+        InputStream sysInBackup = System.in;
         String input = "1" + NEW_LINE + "4";
         ByteArrayInputStream input1 = new ByteArrayInputStream(input.getBytes());
         System.setIn(input1);
@@ -59,7 +57,7 @@ class MenuTest {
 
         menu.mainMenu();
 
-        assertEquals(MENU_OPTIONS + NEW_LINE + defaultBooksListString() + NEW_LINE + NEW_LINE + MENU_OPTIONS + NEW_LINE, consoleOutContent.toString());
+        assertEquals(MENU_OPTIONS + NEW_LINE + defaultBookListDetails() + NEW_LINE + NEW_LINE + MENU_OPTIONS + NEW_LINE, consoleOutContent.toString());
         System.setIn(sysInBackup);
     }
 
@@ -77,7 +75,7 @@ class MenuTest {
         System.setIn(sysInBackup);
     }
 
-    public String defaultBooksListString() {
+    public String defaultBookListDetails() {
         return "1. Programming Book 1" + BOOK_DETAILS_SEPARATORS + "2000" + BOOK_DETAILS_SEPARATORS + "Martin Fowler\n" +
                 "2. Programming Book 2" + BOOK_DETAILS_SEPARATORS + "2001" + BOOK_DETAILS_SEPARATORS + "Martin Fowler";
     }
