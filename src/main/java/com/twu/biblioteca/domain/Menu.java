@@ -3,9 +3,11 @@ package com.twu.biblioteca.domain;
 import com.twu.biblioteca.console.Input;
 import com.twu.biblioteca.console.Screen;
 
-import static com.twu.biblioteca.config.GlobalConstants.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import static com.twu.biblioteca.controller.ControllerConstants.*;
-import static com.twu.biblioteca.domain.DomainConstants.*;
 
 public class Menu {
 
@@ -16,40 +18,31 @@ public class Menu {
     }
 
     public void mainMenu() {
-        int userChoice = 0;
-        boolean quit = false;
+        List<MenuOptions> menuOptions = getMenuOptions();
+        int userChoice = -1;
 
-        while (!quit) {
+        while (true) {
             Screen.getInstance().displayMenu();
-            userChoice = Input.createInstance().getIntegerInput();
-            switch (userChoice) {
-                case MAIN_MENU_DISPLAY_ALL_BOOKS:
-                    Screen.getInstance().displayMessage(library.getBooks()); // TODO - how are the books being printed?
-                    break;
-                case MAIN_MENU_CHECKOUT_A_BOOK:
-                    checkOutABook();
-                    break;
-                case MAIN_MENU_RETURN_A_BOOK:
-                    returnABook();
-                    break;
-                case MAIN_MENU_QUIT:
-                    quit = true;
-                    break;
-                default:
-                    Screen.getInstance().notifyUser(INVALID_OPTION);
-                    break;
+
+            try {
+                userChoice = Input.createInstance().getIntegerInput();
+            } catch (NumberFormatException exception) {
+                Screen.getInstance().notifyUser(INVALID_OPTION);
+                continue;
+            }
+
+            if (userChoice == menuOptions.size() + 1) {
+                break;
+            } else if (userChoice > menuOptions.size() + 1 || userChoice <= 0) {
+                Screen.getInstance().notifyUser(INVALID_OPTION);
+            } else {
+                menuOptions.get(userChoice - 1).execute(library);
             }
         }
     }
 
-    private void returnABook() {
-        Screen.getInstance().notifyUser(GET_BOOK_NAME);
-        library.returnBook(Input.createInstance().getStringInput());
-    }
-
-    private void checkOutABook() {
-        Screen.getInstance().notifyUser(GET_BOOK_NAME);
-        library.checkout(Input.createInstance().getStringInput());
+    private List<MenuOptions> getMenuOptions() {
+        return new ArrayList<>(Arrays.asList(new MenuOptionLibraryBooks(), new MenuOptionCheckout(), new MenuOptionReturnBook()));
     }
 
 }

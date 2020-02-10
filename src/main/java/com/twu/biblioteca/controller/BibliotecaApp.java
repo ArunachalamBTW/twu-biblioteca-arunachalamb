@@ -12,8 +12,6 @@ import static com.twu.biblioteca.controller.ControllerConstants.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.twu.biblioteca.console.Screen.*;
-
 // TODO - think about - SRP, OCP for this class. List it down.
 public class BibliotecaApp {
 

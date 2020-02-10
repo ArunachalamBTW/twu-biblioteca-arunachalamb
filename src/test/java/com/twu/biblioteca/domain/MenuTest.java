@@ -77,6 +77,20 @@ class MenuTest {
         System.setIn(sysInBackup);
     }
 
+    @Test
+    void shouldReturnInvalidOptionIfStringIsEnteredInMenuOption() {
+        InputStream sysInBackup = System.in;
+        String input = "asdfawer\n4";
+        ByteArrayInputStream input1 = new ByteArrayInputStream(input.getBytes());
+        System.setIn(input1);
+        Menu menu = new Menu(library);
+
+        menu.mainMenu();
+
+        assertEquals(MENU_OPTIONS + NEW_LINE + INVALID_OPTION + NEW_LINE + MENU_OPTIONS + NEW_LINE, consoleOutContent.toString());
+        System.setIn(sysInBackup);
+    }
+
     public String defaultBookListDetails() {
         return "1. Programming Book 1" + BOOK_DETAILS_SEPARATORS + "2000" + BOOK_DETAILS_SEPARATORS + "Martin Fowler\n" +
                 "2. Programming Book 2" + BOOK_DETAILS_SEPARATORS + "2001" + BOOK_DETAILS_SEPARATORS + "Martin Fowler";
