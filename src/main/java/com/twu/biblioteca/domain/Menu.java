@@ -4,9 +4,8 @@ import com.twu.biblioteca.console.Input;
 import com.twu.biblioteca.console.Screen;
 
 import static com.twu.biblioteca.config.GlobalConstants.*;
-import static com.twu.biblioteca.config.GlobalConstants.MAIN_MENU_QUIT;
-import static com.twu.biblioteca.console.Screen.*;
-import static com.twu.biblioteca.controller.ControllerConstants.INVALID_OPTION;
+import static com.twu.biblioteca.controller.ControllerConstants.*;
+import static com.twu.biblioteca.domain.DomainConstants.*;
 
 public class Menu {
 
@@ -44,12 +43,12 @@ public class Menu {
     }
 
     private void returnABook() {
-        Screen.getInstance().notifyUser("Enter a book name: ");
+        Screen.getInstance().notifyUser(GET_BOOK_NAME);
         library.returnBook(Input.createInstance().getStringInput());
     }
 
     private void checkOutABook() {
-        Screen.getInstance().notifyUser("Enter a book name: ");
+        Screen.getInstance().notifyUser(GET_BOOK_NAME);
         library.checkout(Input.createInstance().getStringInput());
     }
 
