@@ -2,6 +2,7 @@ package com.twu.biblioteca.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static com.twu.biblioteca.domain.DomainConstants.*;
 import static com.twu.biblioteca.config.GlobalConstants.*;
@@ -32,17 +33,15 @@ public class Library {
     // TODO - checkout is probably one word
     public void checkout(String bookName) { // TODO - name again. What else will I checkout from library? Libraian?
         // TODO - read about streams, and try to use implicit loops - But don't spend too much time.
-//        Book checkoutBook = books.stream().filter(book -> book.isSameByName(bookName)).filter(book -> !checkedOutBooks.contains(book)).findFirst();
-        for (Book book : books) { // TODO - can we get rid of the loop? - When I say this, I mean explicit loop.
-            boolean isBookAvailable = !checkedOutBooks.contains(book);
-            boolean isSameBook = book.isSameByName(bookName);
-            if (isBookAvailable && isSameBook) { // TODO - can you name your conditions?
-                checkedOutBooks.add(book);
-                notifyUser(SUCCESS_CHECKOUT_MESSAGE);
-                return;
-            }
+
+        Optional<Book> checkoutBook = books.stream().filter(book -> book.isSameByName(bookName)).filter(book -> !checkedOutBooks.contains(book)).findFirst();
+
+        if (checkoutBook.isPresent()) {
+            checkedOutBooks.add(checkoutBook.get());
+            notifyUser(SUCCESS_CHECKOUT_MESSAGE);
+        } else {
+            notifyUser(FAIL_CHECKOUT_MESSAGE);
         }
-        notifyUser(FAIL_CHECKOUT_MESSAGE);
     }
 
 
