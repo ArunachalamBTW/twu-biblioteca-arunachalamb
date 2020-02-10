@@ -1,12 +1,13 @@
 package com.twu.biblioteca.domain;
 
+import com.twu.biblioteca.console.Screen;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import static com.twu.biblioteca.domain.DomainConstants.*;
 import static com.twu.biblioteca.config.GlobalConstants.*;
-import static com.twu.biblioteca.console.Screen.displayMessage;
 
 public class Library {
     private List<Book> books; // TODO - name - BOOKS - Confusing as well. Is this list of all books? List of unchecked books?
@@ -57,7 +58,7 @@ public class Library {
     }
 
     public void notifyUser(String message) {
-        displayMessage(message);
+        Screen.getInstance().displayMessage(message);
     } // TODO - using statics. What is the problem? Library is a liar. - Its needs sout to work. Doesn't say so.
 
 }

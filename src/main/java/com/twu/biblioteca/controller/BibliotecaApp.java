@@ -1,5 +1,6 @@
 package com.twu.biblioteca.controller;
 
+import com.twu.biblioteca.console.Screen;
 import com.twu.biblioteca.domain.Book;
 import com.twu.biblioteca.domain.Library;
 import com.twu.biblioteca.console.Input;
@@ -27,7 +28,7 @@ public class BibliotecaApp {
     }
 
     void start() {
-        displayWelcomeMessage();
+        Screen.getInstance().displayWelcomeMessage();
 //        Use Menu implementation here - TODO what does that mean? Try doing it and show it again.
         new Menu(library).mainMenu();
     }

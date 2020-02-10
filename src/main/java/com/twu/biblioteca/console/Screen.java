@@ -1,25 +1,50 @@
 package com.twu.biblioteca.console;
 
+import java.io.PrintStream;
+
 import static com.twu.biblioteca.console.ConsoleConstants.*;
 
 public class Screen {
-    public static void displayWelcomeMessage() {
-        System.out.println(WELCOME_MESSAGE);
+
+    private static Screen screen;
+    private static PrintStream out = null;
+
+    private Screen() {
     }
 
-    public static void displayMenu() {
-        System.out.println(MENU_OPTIONS); // TODO - static imports
+    public static Screen getInstance() {
+        if (out == null) {
+            out = System.out;
+            screen = new Screen();
+        }
+        return screen;
     }
 
-    public static void notifyUser(String message) {
-        System.out.println(message);
+    public static void reset() {
+        if (out != null) {
+            out.close();
+            out = null;
+            screen = null;
+        }
     }
 
-    public static void displayMessage(String message) {
-        System.out.println(message);
+    public void displayWelcomeMessage() {
+        out.println(WELCOME_MESSAGE);
     }
 
-    public static void displayMessageOneLine(String message) {
-        System.out.print(message);
+    public void displayMenu() {
+        out.println(MENU_OPTIONS); // TODO - static imports
+    }
+
+    public void notifyUser(String message) {
+        out.println(message);
+    }
+
+    public void displayMessage(String message) {
+        out.println(message);
+    }
+
+    public void displayMessageOneLine(String message) {
+        out.print(message);
     }
 }

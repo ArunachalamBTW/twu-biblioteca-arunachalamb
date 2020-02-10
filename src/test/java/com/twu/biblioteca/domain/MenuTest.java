@@ -1,6 +1,7 @@
 package com.twu.biblioteca.domain;
 
 import com.twu.biblioteca.console.Input;
+import com.twu.biblioteca.console.Screen;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -45,6 +46,7 @@ class MenuTest {
     public void setOutStreams() {
         System.setOut(printStream);
         Input.reset();
+        Screen.reset();
     }
 
     @Test

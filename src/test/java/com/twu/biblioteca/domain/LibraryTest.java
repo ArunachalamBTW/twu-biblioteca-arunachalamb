@@ -2,6 +2,8 @@ package com.twu.biblioteca.domain;
 
 import static com.twu.biblioteca.config.GlobalConstants.*;
 
+import com.twu.biblioteca.console.Screen;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -31,6 +33,11 @@ public class LibraryTest {
     @BeforeEach
     public void setUpStreams() {
         System.setOut(new PrintStream(consoleOutContent));
+    }
+
+    @AfterEach
+    public void tearDown() {
+        Screen.reset();
     }
 
     @Test

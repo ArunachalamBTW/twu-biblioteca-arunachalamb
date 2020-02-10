@@ -1,5 +1,7 @@
 package com.twu.biblioteca.domain;
 
+import com.twu.biblioteca.console.Input;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

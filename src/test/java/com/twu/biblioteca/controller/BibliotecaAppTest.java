@@ -1,6 +1,7 @@
 package com.twu.biblioteca.controller;
 
 import com.twu.biblioteca.console.Input;
+import com.twu.biblioteca.console.Screen;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -31,6 +32,7 @@ public class BibliotecaAppTest {
     public void setOutStreams() {
         System.setOut(printStream);
         Input.reset();
+        Screen.reset();
     }
 
     @Test
