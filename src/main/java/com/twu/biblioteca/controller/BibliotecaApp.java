@@ -78,8 +78,8 @@ public class BibliotecaApp {
     }
 
     private List<Book> getDefaultBooks() {
-        Book book1 = new Book("Programming Book 1", 2000, "Author Not Found");
-        Book book2 = new Book("Programming Book 2", 2001, "Author Not Found");
+        Book book1 = new Book("Programming Book 1", 2000, "Martin Fowler");
+        Book book2 = new Book("Programming Book 2", 2001, "Martin Fowler");
         return Arrays.asList(book1, book2);
     }
 }

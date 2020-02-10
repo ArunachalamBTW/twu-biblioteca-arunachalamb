@@ -2,14 +2,14 @@ package com.twu.biblioteca.domain;
 
 import static com.twu.biblioteca.config.CONSTANTS.*;
 
-import com.twu.biblioteca.domain.Book;
-import com.twu.biblioteca.domain.Library;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -21,6 +21,14 @@ public class LibraryTest {
     @BeforeEach
     public void setUpStreams() {
         System.setOut(new PrintStream(consoleOutContent));
+    }
+
+    @Test
+    void shouldShowOnlyOneBookInLibrary() {
+        Book book = new Book("Programming Book 1", 2000, "Martin Fowler");
+        Library library = new Library(Collections.singletonList(book));
+
+        assertEquals(getFirstBookString() + NEW_LINE, library.displayAllBooks());
     }
 
     @Test
@@ -90,8 +98,8 @@ public class LibraryTest {
     }
 
     public List<Book> generateTempBooks() { // TODO - temp is a horrible word. Why generate? Why not get? Why not just, twoDifferentBooks() ? Why is this a method? - Helper method? Why not simply a static constant?
-        Book book1 = new Book("Programming Book 1", 2000, "Author Not Found");
-        Book book2 = new Book("Programming Book 2", 2001, "Author Not Found");
+        Book book1 = new Book("Programming Book 1", 2000, "Martin Fowler");
+        Book book2 = new Book("Programming Book 2", 2001, "Martin Fowler");
         List<Book> books = new ArrayList<>();
         books.add(book1);
         books.add(book2);
@@ -99,16 +107,16 @@ public class LibraryTest {
     }
 
     public String defaultBooksListString() {
-        return "1. Programming Book 1" + BOOK_DETAILS_SEPARATORS + "2000" + BOOK_DETAILS_SEPARATORS + "Author Not Found\n" +
-                "2. Programming Book 2" + BOOK_DETAILS_SEPARATORS + "2001" + BOOK_DETAILS_SEPARATORS + "Author Not Found";
+        return "1. Programming Book 1" + BOOK_DETAILS_SEPARATORS + "2000" + BOOK_DETAILS_SEPARATORS + "Martin Fowler\n" +
+                "2. Programming Book 2" + BOOK_DETAILS_SEPARATORS + "2001" + BOOK_DETAILS_SEPARATORS + "Martin Fowler";
     }
 
     public String getFirstBookString() {
-        return "1. Programming Book 1" + BOOK_DETAILS_SEPARATORS + "2000" + BOOK_DETAILS_SEPARATORS + "Author Not Found";
+        return "1. Programming Book 1" + BOOK_DETAILS_SEPARATORS + "2000" + BOOK_DETAILS_SEPARATORS + "Martin Fowler";
     }
 
     public String getSecondBookString() {
-        return "1. Programming Book 2" + BOOK_DETAILS_SEPARATORS + "2001" + BOOK_DETAILS_SEPARATORS + "Author Not Found";
+        return "1. Programming Book 2" + BOOK_DETAILS_SEPARATORS + "2001" + BOOK_DETAILS_SEPARATORS + "Martin Fowler";
     }
 
 }
