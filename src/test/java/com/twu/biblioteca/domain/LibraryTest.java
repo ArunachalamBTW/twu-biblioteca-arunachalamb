@@ -2,6 +2,7 @@ package com.twu.biblioteca.domain;
 
 import static com.twu.biblioteca.config.CONSTANTS.*;
 
+import com.sun.org.apache.bcel.internal.generic.NEW;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -44,7 +45,7 @@ public class LibraryTest {
     void shouldShowAllBooksInALibrary() { // TODO - is this the simplest test?
         Library library = new Library(books); // TODO - intent behind helper method is probably good, however its creating more problem then helping at this point in time.
 
-        assertEquals(defaultBooksListDetails(), library.displayAllBooks().trim()); // TODO - why trim? Apple does not fall. Change your physics.
+        assertEquals(defaultBooksListDetails() + NEW_LINE, library.displayAllBooks()); // TODO - why trim? Apple does not fall. Change your physics.
     }
 
     @Test
@@ -57,7 +58,7 @@ public class LibraryTest {
 
         bookDetails += library.displayAllBooks();
         assertEquals(SUCCESS_CHECKOUT_MESSAGE, consoleOutContent.toString().trim());
-        assertEquals(defaultBooksListDetails() + NEW_LINE + getSecondBookDetails(), bookDetails.trim());
+        assertEquals(defaultBooksListDetails() + NEW_LINE + getSecondBookDetails() + NEW_LINE, bookDetails);
     }
 
     @Test
@@ -69,8 +70,8 @@ public class LibraryTest {
         library.checkOutBook("Random Book");
         bookDetails += library.displayAllBooks();
 
-        assertEquals(FAIL_CHECKOUT_MESSAGE, consoleOutContent.toString().trim());
-        assertEquals(defaultBooksListDetails() + NEW_LINE + defaultBooksListDetails(), bookDetails.trim());
+        assertEquals(FAIL_CHECKOUT_MESSAGE + NEW_LINE, consoleOutContent.toString());
+        assertEquals(defaultBooksListDetails() + NEW_LINE + defaultBooksListDetails() + NEW_LINE, bookDetails);
     }
 
     @Test
@@ -85,8 +86,8 @@ public class LibraryTest {
         library.returnBook(programmingBook);
         bookDetails += library.displayAllBooks();
 
-        assertEquals(SUCCESS_CHECKOUT_MESSAGE + NEW_LINE + SUCCESS_RETURN_MESSAGE, consoleOutContent.toString().trim());
-        assertEquals(defaultBooksListDetails() + NEW_LINE + getSecondBookDetails() + NEW_LINE + defaultBooksListDetails(), bookDetails.trim());
+        assertEquals(SUCCESS_CHECKOUT_MESSAGE + NEW_LINE + SUCCESS_RETURN_MESSAGE + NEW_LINE, consoleOutContent.toString());
+        assertEquals(defaultBooksListDetails() + NEW_LINE + getSecondBookDetails() + NEW_LINE + defaultBooksListDetails() + NEW_LINE, bookDetails);
     }
 
     @Test
@@ -102,8 +103,8 @@ public class LibraryTest {
         library.returnBook(wrongBook);
         bookDetails += library.displayAllBooks();
 
-        assertEquals(SUCCESS_CHECKOUT_MESSAGE + NEW_LINE + FAIL_RETURN_MESSAGE, consoleOutContent.toString().trim());
-        assertEquals(defaultBooksListDetails() + NEW_LINE + getSecondBookDetails() + NEW_LINE + getSecondBookDetails(), bookDetails.trim());
+        assertEquals(SUCCESS_CHECKOUT_MESSAGE + NEW_LINE + FAIL_RETURN_MESSAGE + NEW_LINE, consoleOutContent.toString());
+        assertEquals(defaultBooksListDetails() + NEW_LINE + getSecondBookDetails() + NEW_LINE + getSecondBookDetails() + NEW_LINE, bookDetails);
     }
 
     public String defaultBooksListDetails() {
