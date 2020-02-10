@@ -15,7 +15,7 @@ class BookTest {
         Book programmingBook = new Book(bookName, year, authorName);
 
         String expected = bookName + BOOK_DETAILS_SEPARATORS + year + BOOK_DETAILS_SEPARATORS + authorName;
-        assertEquals(expected, programmingBook.getBookDetails()); // TODO - code smell - Long line - extract it
+        assertEquals(expected, programmingBook.getDetails()); // TODO - code smell - Long line - extract it
     }
 
     @Test // TODO - alright.
@@ -26,7 +26,7 @@ class BookTest {
         String separator = " - ";
         Book programmingBook = new Book(bookName, year, authorName);
 
-        assertEquals(bookName + separator + year + separator + authorName, programmingBook.getBookDetails(separator));
+        assertEquals(bookName + separator + year + separator + authorName, programmingBook.getDetails(separator));
     }
 
     @Test
@@ -34,7 +34,7 @@ class BookTest {
         String bookName = "Programming Book 1";
         Book book = getBook(); // TODO - how does this helper function help me? - This function is non intutive. I have to look into the method implementation when I read it for the first time.
 
-        assertTrue(book.isSameBookByName(bookName));
+        assertTrue(book.isSameByName(bookName));
     }
 
     @Test
@@ -42,7 +42,7 @@ class BookTest {
         String differentBookName = "Programming Book 2";
         Book book = getBook();
 
-        assertFalse(book.isSameBookByName(differentBookName));
+        assertFalse(book.isSameByName(differentBookName));
     }
 
     public Book getBook() {

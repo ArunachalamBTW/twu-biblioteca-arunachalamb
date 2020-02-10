@@ -21,7 +21,7 @@ public class Library {
         for (Book book : booksList) {
             String bookDetails = "";
             if (!checkOutBooks.contains(book)) {
-                bookDetails += countOfBooks++ + ". " + book.getBookDetails() + NEW_LINE;
+                bookDetails += countOfBooks++ + ". " + book.getDetails() + NEW_LINE;
             }
             allBookDetails.append(bookDetails);
         }
@@ -32,7 +32,7 @@ public class Library {
     public void checkOutBook(String bookName) { // TODO - name again. What else will I checkout from library? Libraian?
         // TODO - read about streams, and try to use implicit loops - But don't spend too much time.
         for (Book book : booksList) { // TODO - can we get rid of the loop? - When I say this, I mean explicit loop.
-            if (!checkOutBooks.contains(book) && book.isSameBookByName(bookName)) { // TODO - can you name your conditions?
+            if (!checkOutBooks.contains(book) && book.isSameByName(bookName)) { // TODO - can you name your conditions?
                 checkOutBooks.add(book);
                 notifyUser(SUCCESS_CHECKOUT_MESSAGE);
                 return;
@@ -44,7 +44,7 @@ public class Library {
 
     public void returnBook(String bookName) {
         for (Book book : checkOutBooks) {
-            if (book.isSameBookByName(bookName)) {
+            if (book.isSameByName(bookName)) {
                 checkOutBooks.remove(book);
                 notifyUser(SUCCESS_RETURN_MESSAGE);
                 return;

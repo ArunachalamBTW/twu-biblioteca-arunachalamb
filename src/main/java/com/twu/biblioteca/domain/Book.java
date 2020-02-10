@@ -13,17 +13,17 @@ public class Book {
         this.author = author;
     }
 
-    public String getBookDetails(String separators) {
+    public String getDetails(String separators) {
         return name + separators + year + separators + author;
     }
 
     // TODO - unnecessary `book inside getBookDetails
-    public String getBookDetails() {
-        return getBookDetails(BOOK_DETAILS_SEPARATORS);
+    public String getDetails() {
+        return getDetails(BOOK_DETAILS_SEPARATORS);
     }
 
     // TODO - call it, isSimilar is possible. However hard. isSameByName
-    public boolean isSameBookByName(String bookName) {
+    public boolean isSameByName(String bookName) {
         return name.equals(bookName);
     }
 }
