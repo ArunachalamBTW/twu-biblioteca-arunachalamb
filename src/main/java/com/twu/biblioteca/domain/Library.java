@@ -46,15 +46,14 @@ public class Library {
 
 
     public void returnBook(String bookName) {
-        for (Book book : checkedOutBooks) {
-            boolean isSameBook = book.isSameByName(bookName);
-            if (isSameBook) {
-                checkedOutBooks.remove(book);
-                notifyUser(SUCCESS_RETURN_MESSAGE);
-                return;
-            }
+        Optional<Book> returnBook = checkedOutBooks.stream().filter(book -> book.isSameByName(bookName)).findFirst();
+
+        if (returnBook.isPresent()) {
+            checkedOutBooks.remove(returnBook.get());
+            notifyUser(SUCCESS_RETURN_MESSAGE);
+        } else {
+            notifyUser(FAIL_RETURN_MESSAGE);
         }
-        notifyUser(FAIL_RETURN_MESSAGE);
     }
 
     public void notifyUser(String message) {
