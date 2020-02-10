@@ -13,10 +13,6 @@ public class Book {
         this.author = author;
     }
 
-    public String getName() { // TODO - why does this method even exist?
-        return name;
-    }
-
     public String getBookDetails(String separators) {
         return name + separators + year + separators + author;
     }

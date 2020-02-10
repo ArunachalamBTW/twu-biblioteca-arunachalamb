@@ -2,7 +2,6 @@ package com.twu.biblioteca.domain;
 
 import static com.twu.biblioteca.config.CONSTANTS.*;
 
-import com.sun.org.apache.bcel.internal.generic.NEW;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
