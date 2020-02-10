@@ -9,4 +9,6 @@ public class GlobalConstants {
     public static final String BOOK_DETAILS_SEPARATORS = "\t|\t";
     public static final String NEW_LINE = "\n";
     public static final String TAB_SPACE = "\t";
+    public static final String PERIOD = ".";
+    public static final String SPACE = " ";
 }

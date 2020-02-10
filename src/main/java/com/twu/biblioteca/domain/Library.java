@@ -22,7 +22,7 @@ public class Library {
         for (Book book : books) {
             String bookDetails = "";
             if (!checkedOutBooks.contains(book)) {
-                bookDetails += countOfBooks++ + ". " + book.getDetails() + NEW_LINE;
+                bookDetails += countOfBooks++ + PERIOD + SPACE + book.getDetails() + NEW_LINE;
             }
             allBookDetails.append(bookDetails);
         }
