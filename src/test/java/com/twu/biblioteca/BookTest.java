@@ -37,6 +37,17 @@ class BookTest {
     }
 
     @Test
+    void shouldShowBookDetailsWithSpecifiedSeparators() {
+        String bookName = "Programming Book";
+        String authorName = "No Author";
+        int year = 2000;
+        String separator = " - ";
+        Book programmingBook = new Book(bookName, year, authorName);
+
+        assertEquals(bookName + separator + year + separator + authorName, programmingBook.getBookDetails(separator));
+    }
+
+    @Test
     void shouldReturnTrueForBookWithSameName() {
         String randomBook = "Random Book 1234";
         Book book = generateRandomBook(1234);

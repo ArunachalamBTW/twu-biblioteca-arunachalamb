@@ -16,6 +16,7 @@ public class BibliotecaApp {
 
     public BibliotecaApp() {
         initializeLibrary();
+//        Use Menu implementation here
     }
 
     public static void main(String[] args) {

@@ -17,8 +17,12 @@ public class Book {
         return name;
     }
 
+    public String getBookDetails(String separators) {
+        return name + separators + year + separators + author;
+    }
+
     public String getBookDetails() {
-        return name + BOOK_DETAILS_SEPARATORS + year + BOOK_DETAILS_SEPARATORS + author;
+        return getBookDetails(BOOK_DETAILS_SEPARATORS);
     }
 
     public boolean isSameBookByName(String bookName) {
