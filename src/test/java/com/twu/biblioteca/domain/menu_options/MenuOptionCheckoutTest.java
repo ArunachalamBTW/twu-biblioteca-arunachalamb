@@ -1,7 +1,9 @@
-package com.twu.biblioteca.domain;
+package com.twu.biblioteca.domain.menu_options;
 
 import com.twu.biblioteca.console.Input;
 import com.twu.biblioteca.console.Screen;
+import com.twu.biblioteca.domain.Book;
+import com.twu.biblioteca.domain.Library;
 import com.twu.biblioteca.domain.menu_options.MenuOptionCheckout;
 import com.twu.biblioteca.domain.menu_options.MenuOptions;
 import org.junit.jupiter.api.AfterEach;

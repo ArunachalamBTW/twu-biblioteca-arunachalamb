@@ -1,13 +1,18 @@
-package com.twu.biblioteca.domain;
+package com.twu.biblioteca.domain.menu_options;
 
+import com.twu.biblioteca.console.Input;
 import com.twu.biblioteca.console.Screen;
-import com.twu.biblioteca.domain.menu_options.MenuOptionLibraryBooks;
+import com.twu.biblioteca.domain.Book;
+import com.twu.biblioteca.domain.Library;
+import com.twu.biblioteca.domain.menu_options.MenuOptionCheckout;
+import com.twu.biblioteca.domain.menu_options.MenuOptionReturnBook;
 import com.twu.biblioteca.domain.menu_options.MenuOptions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
@@ -17,10 +22,11 @@ import java.util.List;
 
 import static com.twu.biblioteca.config.GlobalConstants.BOOK_DETAILS_SEPARATORS;
 import static com.twu.biblioteca.config.GlobalConstants.NEW_LINE;
+import static com.twu.biblioteca.domain.DomainConstants.*;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
 
-class MenuOptionLibraryBooksTest {
-
+class MenuOptionReturnBookTest {
     private ByteArrayOutputStream consoleOutContent;
     private PrintStream printStream;
     private static List<Book> books;
@@ -44,17 +50,37 @@ class MenuOptionLibraryBooksTest {
     @AfterEach
     public void setOutStreams() {
         System.setOut(printStream);
+        Input.reset();
         Screen.reset();
     }
 
     @Test
-    void shouldDisplayBooksInALibrary() {
+    void shouldNotReturnAInValidBook() {
         InputStream sysInBackup = System.in;
-        MenuOptions menuOption = new MenuOptionLibraryBooks();
+        String bookName = "Programming Book 1";
+        ByteArrayInputStream input1 = new ByteArrayInputStream(bookName.getBytes());
+        System.setIn(input1);
+        MenuOptions returnBook = new MenuOptionReturnBook();
 
-        menuOption.execute(library);
+        returnBook.execute(library);
 
-        assertEquals(defaultBookListDetails() + NEW_LINE + NEW_LINE, consoleOutContent.toString());
+        assertEquals(GET_BOOK_NAME + NEW_LINE + FAIL_RETURN_MESSAGE + NEW_LINE, consoleOutContent.toString());
+        System.setIn(sysInBackup);
+    }
+
+    @Test
+    void shouldReturnAValidBook() {
+        InputStream sysInBackup = System.in;
+        String bookName = "Programming Book 1\nProgramming Book 1";
+        ByteArrayInputStream input1 = new ByteArrayInputStream(bookName.getBytes());
+        System.setIn(input1);
+        MenuOptions checkoutBook = new MenuOptionCheckout();
+        MenuOptions returnBook = new MenuOptionReturnBook();
+        checkoutBook.execute(library);
+
+        returnBook.execute(library);
+
+        assertEquals(GET_BOOK_NAME + NEW_LINE + SUCCESS_CHECKOUT_MESSAGE + NEW_LINE + GET_BOOK_NAME + NEW_LINE + SUCCESS_RETURN_MESSAGE + NEW_LINE, consoleOutContent.toString());
         System.setIn(sysInBackup);
     }
 
