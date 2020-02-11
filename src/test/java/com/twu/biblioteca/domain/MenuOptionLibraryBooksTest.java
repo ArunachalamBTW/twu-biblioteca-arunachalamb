@@ -1,13 +1,13 @@
 package com.twu.biblioteca.domain;
 
-import com.twu.biblioteca.console.Input;
 import com.twu.biblioteca.console.Screen;
+import com.twu.biblioteca.domain.menu_options.MenuOptionLibraryBooks;
+import com.twu.biblioteca.domain.menu_options.MenuOptions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
@@ -17,8 +17,6 @@ import java.util.List;
 
 import static com.twu.biblioteca.config.GlobalConstants.BOOK_DETAILS_SEPARATORS;
 import static com.twu.biblioteca.config.GlobalConstants.NEW_LINE;
-import static com.twu.biblioteca.console.ConsoleConstants.MENU_OPTIONS;
-import static com.twu.biblioteca.console.ConsoleConstants.WELCOME_MESSAGE;
 import static org.junit.jupiter.api.Assertions.*;
 
 class MenuOptionLibraryBooksTest {

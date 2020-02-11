@@ -2,6 +2,10 @@ package com.twu.biblioteca.domain;
 
 import com.twu.biblioteca.console.Input;
 import com.twu.biblioteca.console.Screen;
+import com.twu.biblioteca.domain.menu_options.MenuOptionCheckout;
+import com.twu.biblioteca.domain.menu_options.MenuOptionLibraryBooks;
+import com.twu.biblioteca.domain.menu_options.MenuOptionReturnBook;
+import com.twu.biblioteca.domain.menu_options.MenuOptions;
 
 import java.util.ArrayList;
 import java.util.Arrays;

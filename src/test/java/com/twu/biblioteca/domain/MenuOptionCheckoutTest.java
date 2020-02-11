@@ -2,6 +2,8 @@ package com.twu.biblioteca.domain;
 
 import com.twu.biblioteca.console.Input;
 import com.twu.biblioteca.console.Screen;
+import com.twu.biblioteca.domain.menu_options.MenuOptionCheckout;
+import com.twu.biblioteca.domain.menu_options.MenuOptions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
