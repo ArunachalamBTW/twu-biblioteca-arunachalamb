@@ -23,4 +23,8 @@ public class Movie {
         return name + separator + year + separator + director + separator + rating;
     }
 
+    public boolean isSameByName(String movieName) {
+        return name.equals(movieName);
+    }
+
 }

@@ -2,6 +2,8 @@ package com.twu.biblioteca.domain;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+
 import static com.twu.biblioteca.config.GlobalConstants.*;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -24,6 +26,11 @@ class MovieTest {
         assertEquals(getMovieDetailsWithCustomSeparator(customSeparator), movie.getDetails(customSeparator));
     }
 
+    @Test
+    void shouldReturnTrueForSameMovieName() {
+        assertTrue(movie.isSameByName("Interstellar"));
+    }
+
     public String getMovieDetails() {
         return getMovieDetailsWithCustomSeparator(MOVIE_DETAILS_SEPARATORS);
 
@@ -32,6 +39,4 @@ class MovieTest {
     private String getMovieDetailsWithCustomSeparator(String customSeparator) {
         return movieName + customSeparator + year + customSeparator + director + customSeparator + rating;
     }
-
-
 }
