@@ -1,18 +1,20 @@
 package com.twu.biblioteca.domain;
 
 import com.twu.biblioteca.console.Screen;
+import com.twu.biblioteca.services.Notification;
 
 import java.util.*;
 
 import static com.twu.biblioteca.domain.DomainConstants.*;
 import static com.twu.biblioteca.config.GlobalConstants.*;
 
-public class Library {
+public class Library implements Notification {
     private List<Book> allBooks; // TODO - name - BOOKS - Confusing as well. Is this list of all books? List of unchecked books?
     private Screen screen;
     private List<Book> checkedOutBooks; // TODO - name again - probably will use past tense
     private List<Movie> allMovies;
     private Map<String, Movie> checkedoutMovies;
+    private User loggedInUser;
 
     public Library(List<Book> allBooks, List<Movie> allMovies, Screen screen) {
         this.allBooks = allBooks;
@@ -88,4 +90,13 @@ public class Library {
         screen.displayMessage(message);
     } // TODO - using statics. What is the problem? Library is a liar. - Its needs sout to work. Doesn't say so.
 
+    @Override
+    public void loggedIn(User user) {
+        loggedInUser = user;
+    }
+
+    @Override
+    public void loggedOut() {
+        loggedInUser = null;
+    }
 }

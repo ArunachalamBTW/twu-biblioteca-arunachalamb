@@ -13,6 +13,7 @@ import java.util.List;
 public class BibliotecaApp {
 
     private Library library;
+    private Menu menu;
 
     public BibliotecaApp() {
         initializeLibrary();
@@ -25,7 +26,8 @@ public class BibliotecaApp {
     void start() {
         Screen.getInstance().displayWelcomeMessage();
 //        Use Menu implementation here - TODO what does that mean? Try doing it and show it again.
-        new Menu(library, Screen.getInstance()).mainMenu();
+        menu = new Menu(library, Screen.getInstance());
+        menu.mainMenu();
     }
 
     private void initializeLibrary() {

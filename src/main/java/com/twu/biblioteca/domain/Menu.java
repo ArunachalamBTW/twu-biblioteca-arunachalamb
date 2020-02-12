@@ -3,6 +3,7 @@ package com.twu.biblioteca.domain;
 import com.twu.biblioteca.console.Input;
 import com.twu.biblioteca.console.Screen;
 import com.twu.biblioteca.domain.menu_options.*;
+import com.twu.biblioteca.services.Notification;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,10 +11,11 @@ import java.util.List;
 
 import static com.twu.biblioteca.controller.ControllerConstants.*;
 
-public class Menu {
+public class Menu implements Notification {
 
     private Library library;
     private Screen screen;
+    private User loggedInUser;
 
     public Menu(Library library, Screen screen) {
         this.library = library;
@@ -54,4 +56,13 @@ public class Menu {
         ));
     }
 
+    @Override
+    public void loggedIn(User user) {
+        loggedInUser = user;
+    }
+
+    @Override
+    public void loggedOut() {
+        loggedInUser = null;
+    }
 }
