@@ -99,7 +99,7 @@ public class LibraryTest {
     }
 
     @Test
-    void shouldFailWhenWithSameNameIsNotFound() {
+    void shouldFailWhenBookWithSameNameIsNotFound() {
         Library library = new Library(books, movies, Screen.getInstance());
         String bookDetails = "";
 
@@ -109,6 +109,19 @@ public class LibraryTest {
 
         assertEquals(FAIL_CHECKOUT_MESSAGE_FOR_BOOK + NEW_LINE, consoleOutContent.toString());
         assertEquals(defaultBooksListDetails() + NEW_LINE + defaultBooksListDetails() + NEW_LINE, bookDetails);
+    }
+
+    @Test
+    void shouldFailWhenMovieWithSameNameIsNotFound() {
+        Library library = new Library(books, movies, Screen.getInstance());
+        String movieDetails = "";
+
+        movieDetails += library.getAllMovies();
+        library.checkoutMovie("Prestige");
+        movieDetails += library.getAllMovies();
+
+        assertEquals(FAIL_CHECKOUT_MESSAGE_FOR_MOVIE + NEW_LINE, consoleOutContent.toString());
+        assertEquals(defaultMoviesListDetails() + NEW_LINE + defaultMoviesListDetails() + NEW_LINE, movieDetails);
     }
 
     @Test
