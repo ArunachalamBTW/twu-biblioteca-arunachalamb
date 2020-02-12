@@ -11,10 +11,12 @@ import static com.twu.biblioteca.config.GlobalConstants.*;
 
 public class Library {
     private List<Book> books; // TODO - name - BOOKS - Confusing as well. Is this list of all books? List of unchecked books?
+    private Screen screen;
     private List<Book> checkedOutBooks; // TODO - name again - probably will use past tense
 
-    public Library(List<Book> books) {
+    public Library(List<Book> books, Screen screen) {
         this.books = books;
+        this.screen = screen;
         this.checkedOutBooks = new ArrayList<>();
     }
 
@@ -58,7 +60,7 @@ public class Library {
     }
 
     public void notifyUser(String message) {
-        Screen.getInstance().displayMessage(message);
+        screen.displayMessage(message);
     } // TODO - using statics. What is the problem? Library is a liar. - Its needs sout to work. Doesn't say so.
 
 }

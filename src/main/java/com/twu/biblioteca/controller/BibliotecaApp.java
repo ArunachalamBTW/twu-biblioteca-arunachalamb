@@ -3,11 +3,7 @@ package com.twu.biblioteca.controller;
 import com.twu.biblioteca.console.Screen;
 import com.twu.biblioteca.domain.Book;
 import com.twu.biblioteca.domain.Library;
-import com.twu.biblioteca.console.Input;
 import com.twu.biblioteca.domain.Menu;
-
-import static com.twu.biblioteca.config.GlobalConstants.*;
-import static com.twu.biblioteca.controller.ControllerConstants.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,12 +24,12 @@ public class BibliotecaApp {
     void start() {
         Screen.getInstance().displayWelcomeMessage();
 //        Use Menu implementation here - TODO what does that mean? Try doing it and show it again.
-        new Menu(library).mainMenu();
+        new Menu(library, Screen.getInstance()).mainMenu();
     }
 
     private void initializeLibrary() {
         // TODO - why not inline?
-        library = new Library(getDefaultBooks());
+        library = new Library(getDefaultBooks(), Screen.getInstance());
     }
 
     private List<Book> getDefaultBooks() {

@@ -16,9 +16,11 @@ import static com.twu.biblioteca.controller.ControllerConstants.*;
 public class Menu {
 
     private Library library;
+    private Screen screen;
 
-    public Menu(Library library) {
+    public Menu(Library library, Screen screen) {
         this.library = library;
+        this.screen = screen;
     }
 
     public void mainMenu() {
@@ -26,19 +28,19 @@ public class Menu {
         int userChoice = -1;
 
         while (true) {
-            Screen.getInstance().displayMenu();
+            screen.displayMenu();
 
             try {
                 userChoice = Input.createInstance().getIntegerInput();
             } catch (NumberFormatException exception) {
-                Screen.getInstance().notifyUser(INVALID_OPTION);
+                screen.notifyUser(INVALID_OPTION);
                 continue;
             }
 
             if (userChoice == menuOptions.size() + 1) {
                 break;
             } else if (userChoice > menuOptions.size() + 1 || userChoice <= 0) {
-                Screen.getInstance().notifyUser(INVALID_OPTION);
+                screen.notifyUser(INVALID_OPTION);
             } else {
                 menuOptions.get(userChoice - 1).execute(library);
             }

@@ -6,7 +6,7 @@ import static com.twu.biblioteca.console.ConsoleConstants.*;
 
 public class Screen {
 
-    private static Screen screen;
+    private static Screen screen = null;
     private static PrintStream out = null;
 
     private Screen() {

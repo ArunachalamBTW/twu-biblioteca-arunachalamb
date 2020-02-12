@@ -3,8 +3,6 @@ package com.twu.biblioteca.domain.menu_options;
 import com.twu.biblioteca.console.Screen;
 import com.twu.biblioteca.domain.Book;
 import com.twu.biblioteca.domain.Library;
-import com.twu.biblioteca.domain.menu_options.MenuOptionLibraryBooks;
-import com.twu.biblioteca.domain.menu_options.MenuOptions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -20,6 +18,7 @@ import java.util.List;
 import static com.twu.biblioteca.config.GlobalConstants.BOOK_DETAILS_SEPARATORS;
 import static com.twu.biblioteca.config.GlobalConstants.NEW_LINE;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 class MenuOptionLibraryBooksTest {
 
@@ -27,13 +26,14 @@ class MenuOptionLibraryBooksTest {
     private PrintStream printStream;
     private static List<Book> books;
     private static Library library;
+    private Library mockedLibrary;
 
     @BeforeAll
     public static void initTest() {
         Book book1 = new Book("Programming Book 1", 2000, "Martin Fowler");
         Book book2 = new Book("Programming Book 2", 2001, "Martin Fowler");
         books = new ArrayList<>(Arrays.asList(book1, book2));
-        library = new Library(books);
+        library = new Library(books, Screen.getInstance());
     }
 
     @BeforeEach
@@ -41,6 +41,7 @@ class MenuOptionLibraryBooksTest {
         printStream = System.out;
         consoleOutContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(consoleOutContent));
+        mockedLibrary = mock(Library.class);
     }
 
     @AfterEach
@@ -54,15 +55,10 @@ class MenuOptionLibraryBooksTest {
         InputStream sysInBackup = System.in;
         MenuOptions menuOption = new MenuOptionLibraryBooks();
 
-        menuOption.execute(library);
+        menuOption.execute(mockedLibrary);
 
-        assertEquals(defaultBookListDetails() + NEW_LINE + NEW_LINE, consoleOutContent.toString());
+        verify(mockedLibrary, times(1)).getBooks();
         System.setIn(sysInBackup);
-    }
-
-    public String defaultBookListDetails() {
-        return "1. Programming Book 1" + BOOK_DETAILS_SEPARATORS + "2000" + BOOK_DETAILS_SEPARATORS + "Martin Fowler\n" +
-                "2. Programming Book 2" + BOOK_DETAILS_SEPARATORS + "2001" + BOOK_DETAILS_SEPARATORS + "Martin Fowler";
     }
 
 }

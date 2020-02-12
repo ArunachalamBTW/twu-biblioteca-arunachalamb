@@ -18,9 +18,11 @@ public class Input {
     }
 
     public static void reset() {
-        scanner.close();
-        scanner = null;
-        input = null;
+        if (scanner != null) {
+            scanner.close();
+            scanner = null;
+            input = null;
+        }
     }
 
     public int getIntegerInput() {

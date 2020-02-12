@@ -24,15 +24,12 @@ import static org.junit.jupiter.api.Assertions.*;
 class MenuTest {
     private ByteArrayOutputStream consoleOutContent;
     private PrintStream printStream;
-    private static List<Book> books;
-    private static Library library;
+    private List<Book> books;
+    private Library library;
 
     @BeforeAll
     public static void initTest() {
-        Book book1 = new Book("Programming Book 1", 2000, "Martin Fowler");
-        Book book2 = new Book("Programming Book 2", 2001, "Martin Fowler");
-        books = new ArrayList<>(Arrays.asList(book1, book2));
-        library = new Library(books);
+
     }
 
     @BeforeEach
@@ -40,6 +37,11 @@ class MenuTest {
         printStream = System.out;
         consoleOutContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(consoleOutContent));
+
+        Book book1 = new Book("Programming Book 1", 2000, "Martin Fowler");
+        Book book2 = new Book("Programming Book 2", 2001, "Martin Fowler");
+        books = new ArrayList<>(Arrays.asList(book1, book2));
+        library = new Library(books, Screen.getInstance());
     }
 
     @AfterEach
@@ -55,7 +57,7 @@ class MenuTest {
         String input = "1" + NEW_LINE + "4";
         ByteArrayInputStream input1 = new ByteArrayInputStream(input.getBytes());
         System.setIn(input1);
-        Menu menu = new Menu(library);
+        Menu menu = new Menu(library, Screen.getInstance());
 
         menu.mainMenu();
 
@@ -69,7 +71,7 @@ class MenuTest {
         String input = "9" + NEW_LINE + "4";
         ByteArrayInputStream input1 = new ByteArrayInputStream(input.getBytes());
         System.setIn(input1);
-        Menu menu = new Menu(library);
+        Menu menu = new Menu(library, Screen.getInstance());
 
         menu.mainMenu();
 
@@ -83,7 +85,7 @@ class MenuTest {
         String input = "asdfawer\n4";
         ByteArrayInputStream input1 = new ByteArrayInputStream(input.getBytes());
         System.setIn(input1);
-        Menu menu = new Menu(library);
+        Menu menu = new Menu(library, Screen.getInstance());
 
         menu.mainMenu();
 

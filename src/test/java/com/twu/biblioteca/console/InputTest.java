@@ -1,6 +1,7 @@
 package com.twu.biblioteca.console;
 
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
@@ -9,6 +10,11 @@ import java.io.InputStream;
 import static org.junit.jupiter.api.Assertions.*;
 
 class InputTest {
+
+    @BeforeEach
+    public void init() {
+        Input.reset();
+    }
 
     @AfterEach
     public void reset() {
@@ -35,7 +41,7 @@ class InputTest {
         System.setIn(input1);
         String hello = Input.createInstance().getStringInput();
 
-        assertEquals(hello, magicString);
+        assertEquals(magicString, hello);
         System.setIn(sysInBackup);
     }
 }

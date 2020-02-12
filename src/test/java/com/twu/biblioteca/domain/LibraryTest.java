@@ -43,21 +43,21 @@ public class LibraryTest {
     @Test
     void shouldShowOnlyOneBookInLibrary() {
         Book book = new Book("Programming Book 1", 2000, "Martin Fowler");
-        Library library = new Library(Collections.singletonList(book));
+        Library library = new Library(Collections.singletonList(book), Screen.getInstance());
 
         assertEquals(getFirstBookDetails() + NEW_LINE, library.getBooks());
     }
 
     @Test
     void shouldShowAllBooksInALibrary() { // TODO - is this the simplest test?
-        Library library = new Library(books); // TODO - intent behind helper method is probably good, however its creating more problem then helping at this point in time.
+        Library library = new Library(books, Screen.getInstance()); // TODO - intent behind helper method is probably good, however its creating more problem then helping at this point in time.
 
         assertEquals(defaultBooksListDetails() + NEW_LINE, library.getBooks()); // TODO - why trim? Apple does not fall. Change your physics.
     }
 
     @Test
     void shouldCheckOutBookWithSameName() {
-        Library library = new Library(books);
+        Library library = new Library(books, Screen.getInstance());
         String bookDetails = "";
         bookDetails += library.getBooks();
 
@@ -70,7 +70,7 @@ public class LibraryTest {
 
     @Test
     void shouldFailWhenWithSameNameIsNotFound() {
-        Library library = new Library(books);
+        Library library = new Library(books, Screen.getInstance());
         String bookDetails = "";
 
         bookDetails += library.getBooks();
@@ -84,7 +84,7 @@ public class LibraryTest {
     @Test
     void shouldReturnTheBookToTheLibrary() {
         String programmingBook = "Programming Book 1";
-        Library library = new Library(books);
+        Library library = new Library(books, Screen.getInstance());
         String bookDetails = "";
 
         bookDetails += library.getBooks();
@@ -101,7 +101,7 @@ public class LibraryTest {
     void shouldNotReturnAWrongBook() {
         String programmingBook = "Programming Book 1";
         String wrongBook = "Prog Book 1";
-        Library library = new Library(books);
+        Library library = new Library(books, Screen.getInstance());
         String bookDetails = "";
 
         bookDetails += library.getBooks();
