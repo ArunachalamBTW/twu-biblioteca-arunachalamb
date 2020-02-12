@@ -2,9 +2,7 @@ package com.twu.biblioteca.domain;
 
 import com.twu.biblioteca.console.Screen;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import static com.twu.biblioteca.domain.DomainConstants.*;
 import static com.twu.biblioteca.config.GlobalConstants.*;
@@ -14,12 +12,14 @@ public class Library {
     private Screen screen;
     private List<Book> checkedOutBooks; // TODO - name again - probably will use past tense
     private List<Movie> allMovies;
+    private Map<String, Movie> checkedoutMovies;
 
     public Library(List<Book> allBooks, List<Movie> allMovies, Screen screen) {
         this.allBooks = allBooks;
         this.screen = screen;
         this.allMovies = allMovies;
         this.checkedOutBooks = new ArrayList<>();
+        this.checkedoutMovies = new HashMap<>();
     }
 
     public String getAllBooks() { // TODO - what's display? Liar. // TODO - why ALL?
@@ -40,23 +40,25 @@ public class Library {
         int countOfMovies = 1;
         for (Movie movie : allMovies) {
             String movieDetails = "";
-            movieDetails += countOfMovies++ + PERIOD + SPACE + movie.getDetails() + NEW_LINE;
+            if (!checkedoutMovies.containsValue(movie)) {
+                movieDetails += countOfMovies++ + PERIOD + SPACE + movie.getDetails() + NEW_LINE;
+            }
             allMovieDetails.append(movieDetails);
         }
         return allMovieDetails.toString();
     }
 
     // TODO - checkout is probably one word
-    public void checkout(String bookName) { // TODO - name again. What else will I checkout from library? Libraian?
+    public void checkoutBook(String bookName) { // TODO - name again. What else will I checkout from library? Libraian?
         // TODO - read about streams, and try to use implicit loops - But don't spend too much time.
 
         Optional<Book> checkoutBook = allBooks.stream().filter(book -> book.isSameByName(bookName)).filter(book -> !checkedOutBooks.contains(book)).findFirst();
 
         if (checkoutBook.isPresent()) {
             checkedOutBooks.add(checkoutBook.get());
-            notifyUser(SUCCESS_CHECKOUT_MESSAGE);
+            notifyUser(SUCCESS_CHECKOUT_MESSAGE_FOR_BOOK);
         } else {
-            notifyUser(FAIL_CHECKOUT_MESSAGE);
+            notifyUser(FAIL_CHECKOUT_MESSAGE_FOR_BOOK);
         }
     }
 
@@ -65,9 +67,20 @@ public class Library {
 
         if (returnBook.isPresent()) {
             checkedOutBooks.remove(returnBook.get());
-            notifyUser(SUCCESS_RETURN_MESSAGE);
+            notifyUser(SUCCESS_RETURN_MESSAGE_FOR_BOOK);
         } else {
-            notifyUser(FAIL_RETURN_MESSAGE);
+            notifyUser(FAIL_RETURN_MESSAGE_FOR_BOOK);
+        }
+    }
+
+    public void checkoutMovie(String movieName) {
+        Optional<Movie> checkoutMovie = allMovies.stream().filter(movie -> movie.isSameByName(movieName)).filter(movie -> !checkedoutMovies.containsKey(movieName)).findFirst();
+
+        if (checkoutMovie.isPresent()) {
+            checkedoutMovies.put(movieName, checkoutMovie.get());
+            notifyUser(SUCCESS_CHECKOUT_MESSAGE_FOR_MOVIE);
+        } else {
+            notifyUser(FAIL_CHECKOUT_MESSAGE_FOR_MOVIE);
         }
     }
 

@@ -87,7 +87,7 @@ class MenuOptionReturnBookTest {
 
         returnBook.execute(mockedLibrary);
 
-        verify(mockedLibrary, times(1)).checkout(bookName);
+        verify(mockedLibrary, times(1)).checkoutBook(bookName);
         verify(mockedLibrary, times(1)).returnBook(bookName);
         System.setIn(sysInBackup);
     }

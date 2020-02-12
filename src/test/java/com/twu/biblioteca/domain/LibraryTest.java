@@ -55,7 +55,7 @@ public class LibraryTest {
     void shouldShowOnlyOneMovieInLibrary() {
         Library library = new Library(new ArrayList<>(), Collections.singletonList(movie), Screen.getInstance());
 
-        assertEquals(getFirstMovieDetails() + NEW_LINE, library.getAllMovies());
+        assertEquals("1. " + getFirstMovieDetails() + NEW_LINE, library.getAllMovies());
     }
 
     @Test
@@ -78,11 +78,24 @@ public class LibraryTest {
         String bookDetails = "";
         bookDetails += library.getAllBooks();
 
-        library.checkout("Programming Book 1");
+        library.checkoutBook("Programming Book 1");
 
         bookDetails += library.getAllBooks();
-        assertEquals(SUCCESS_CHECKOUT_MESSAGE, consoleOutContent.toString().trim());
+        assertEquals(SUCCESS_CHECKOUT_MESSAGE_FOR_BOOK, consoleOutContent.toString().trim());
         assertEquals(defaultBooksListDetails() + NEW_LINE + getSecondBookDetails() + NEW_LINE, bookDetails);
+    }
+
+    @Test
+    void shouldCheckOutMovieWithSameName() {
+        Library library = new Library(books, movies, Screen.getInstance());
+        String movieDetails = "";
+        movieDetails += library.getAllMovies();
+
+        library.checkoutMovie("Interstellar");
+
+        movieDetails += library.getAllMovies();
+        assertEquals(SUCCESS_CHECKOUT_MESSAGE_FOR_MOVIE, consoleOutContent.toString().trim());
+        assertEquals(defaultMoviesListDetails() + NEW_LINE + "1" + PERIOD + SPACE + getSecondMovieDetails() + NEW_LINE, movieDetails);
     }
 
     @Test
@@ -91,10 +104,10 @@ public class LibraryTest {
         String bookDetails = "";
 
         bookDetails += library.getAllBooks();
-        library.checkout("Random Book");
+        library.checkoutBook("Random Book");
         bookDetails += library.getAllBooks();
 
-        assertEquals(FAIL_CHECKOUT_MESSAGE + NEW_LINE, consoleOutContent.toString());
+        assertEquals(FAIL_CHECKOUT_MESSAGE_FOR_BOOK + NEW_LINE, consoleOutContent.toString());
         assertEquals(defaultBooksListDetails() + NEW_LINE + defaultBooksListDetails() + NEW_LINE, bookDetails);
     }
 
@@ -105,12 +118,12 @@ public class LibraryTest {
         String bookDetails = "";
 
         bookDetails += library.getAllBooks();
-        library.checkout(programmingBook);
+        library.checkoutBook(programmingBook);
         bookDetails += library.getAllBooks();
         library.returnBook(programmingBook);
         bookDetails += library.getAllBooks();
 
-        assertEquals(SUCCESS_CHECKOUT_MESSAGE + NEW_LINE + SUCCESS_RETURN_MESSAGE + NEW_LINE, consoleOutContent.toString());
+        assertEquals(SUCCESS_CHECKOUT_MESSAGE_FOR_BOOK + NEW_LINE + SUCCESS_RETURN_MESSAGE_FOR_BOOK + NEW_LINE, consoleOutContent.toString());
         assertEquals(defaultBooksListDetails() + NEW_LINE + getSecondBookDetails() + NEW_LINE + defaultBooksListDetails() + NEW_LINE, bookDetails);
     }
 
@@ -122,12 +135,12 @@ public class LibraryTest {
         String bookDetails = "";
 
         bookDetails += library.getAllBooks();
-        library.checkout(programmingBook);
+        library.checkoutBook(programmingBook);
         bookDetails += library.getAllBooks();
         library.returnBook(wrongBook);
         bookDetails += library.getAllBooks();
 
-        assertEquals(SUCCESS_CHECKOUT_MESSAGE + NEW_LINE + FAIL_RETURN_MESSAGE + NEW_LINE, consoleOutContent.toString());
+        assertEquals(SUCCESS_CHECKOUT_MESSAGE_FOR_BOOK + NEW_LINE + FAIL_RETURN_MESSAGE_FOR_BOOK + NEW_LINE, consoleOutContent.toString());
         assertEquals(defaultBooksListDetails() + NEW_LINE + getSecondBookDetails() + NEW_LINE + getSecondBookDetails() + NEW_LINE, bookDetails);
     }
 
@@ -145,27 +158,25 @@ public class LibraryTest {
     }
 
     public String defaultMoviesListDetails() {
-        return getFirstMovieDetails() + NEW_LINE + getSecondMovieDetails();
+        return "1. " + getFirstMovieDetails() + NEW_LINE + "2. " + getSecondMovieDetails();
     }
 
     public String getFirstMovieDetails() {
-        int count = 1;
         String movieName = "Interstellar";
         String director = "Christopher Nolan";
         int year = 2020;
         float rating = 10;
         String separator = MOVIE_DETAILS_SEPARATORS;
-        return count + PERIOD + SPACE + movieName + separator + year + separator + director + separator + rating;
+        return movieName + separator + year + separator + director + separator + rating;
     }
 
     public String getSecondMovieDetails() {
-        int count = 2;
         String movieName = "2.0";
         String director = "Shankar";
         int year = 2019;
         float rating = 10;
         String separator = MOVIE_DETAILS_SEPARATORS;
-        return count + PERIOD + SPACE + movieName + separator + year + separator + director + separator + rating;
+        return movieName + separator + year + separator + director + separator + rating;
     }
 
 }

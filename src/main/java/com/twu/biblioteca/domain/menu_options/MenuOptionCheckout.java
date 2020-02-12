@@ -9,6 +9,6 @@ public class MenuOptionCheckout implements MenuOptions {
     @Override
     public void execute(Library library) {
         screen.notifyUser(GET_BOOK_NAME);
-        library.checkout(Input.createInstance().getStringInput());
+        library.checkoutBook(Input.createInstance().getStringInput());
     }
 }

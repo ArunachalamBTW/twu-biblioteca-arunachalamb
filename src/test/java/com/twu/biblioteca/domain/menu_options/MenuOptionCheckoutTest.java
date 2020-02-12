@@ -61,7 +61,7 @@ class MenuOptionCheckoutTest {
 
         checkoutBook.execute(mockedLibrary);
 
-        verify(mockedLibrary, times(1)).checkout(bookName);
+        verify(mockedLibrary, times(1)).checkoutBook(bookName);
         System.setIn(sysInBackup);
     }
 
