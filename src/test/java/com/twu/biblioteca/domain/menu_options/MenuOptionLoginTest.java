@@ -39,8 +39,6 @@ class MenuOptionLoginTest {
         Movie movie1 = new Movie("Interstellar", 2020, "Christopher Nolan", 10);
         Movie movie2 = new Movie("2.0", 2019, "Shankar", 10);
         movies = new ArrayList<>(Arrays.asList(movie1, movie2));
-
-        library = new Library(books, movies, Screen.getInstance());
     }
 
     @BeforeEach
@@ -48,6 +46,8 @@ class MenuOptionLoginTest {
         printStream = System.out;
         consoleOutContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(consoleOutContent));
+
+        library = new Library(books, movies, Screen.getInstance());
         mockedLibrary = mock(Library.class);
     }
 
@@ -72,6 +72,26 @@ class MenuOptionLoginTest {
         userLogin.execute(mockedLibrary);
 
         verify(login, times(1)).doLogin(userCode, password);
+        System.setIn(sysInBackup);
+    }
+
+    @Test
+    void shouldLogoutUserInALibraryAfterLogin() {
+        InputStream sysInBackup = System.in;
+        String userCode = "123-4567";
+        String password = "hello";
+        String input = userCode + "\n" + password;
+        ByteArrayInputStream userCodeInput = new ByteArrayInputStream(input.getBytes());
+        System.setIn(userCodeInput);
+        Login login = mock(Login.class);
+        when(login.isAnyOneLoggedIn()).thenReturn(false, true);
+        MenuOptions userLogin = new MenuOptionLogin(login);
+
+        userLogin.execute(mockedLibrary);
+        userLogin.execute(mockedLibrary);
+
+        verify(login, times(1)).doLogin(userCode, password);
+        verify(login, timeout(1)).logout();
         System.setIn(sysInBackup);
     }
 

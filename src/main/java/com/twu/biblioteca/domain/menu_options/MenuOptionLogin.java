@@ -15,10 +15,14 @@ public class MenuOptionLogin implements MenuOptions {
 
     @Override
     public void execute(Library library) {
-        screen.displayMessage(GET_USER_CODE);
-        String userCode = Input.createInstance().getStringInput();
-        screen.displayMessage(GET_PASSWORD);
-        String password = Input.createInstance().getStringInput();
-        login.doLogin(userCode, password);
+        if (!login.isAnyOneLoggedIn()) {
+            screen.displayMessage(GET_USER_CODE);
+            String userCode = Input.createInstance().getStringInput();
+            screen.displayMessage(GET_PASSWORD);
+            String password = Input.createInstance().getStringInput();
+            login.doLogin(userCode, password);
+        } else {
+            login.logout();
+        }
     }
 }
