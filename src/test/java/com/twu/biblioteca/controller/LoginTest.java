@@ -129,6 +129,21 @@ class LoginTest {
         verify(mockedMenu, times(0)).loggedIn(user1);
     }
 
+    @Test
+    void shouldNotifyAllIfUserLogoutSuccessfully() {
+        User user1 = getUsers().get(0);
+        User user2 = getUsers().get(1);
+        Login login = Login.getInstance(new ArrayList<>(Arrays.asList(user1, user2)), notifiers, Screen.getInstance());
+
+        login.login("123-4567", hellomd5);
+        login.logout();
+
+        verify(mockedLibrary, times(1)).loggedIn(user1);
+        verify(mockedMenu, times(1)).loggedIn(user1);
+        verify(mockedLibrary, times(1)).loggedOut();
+        verify(mockedMenu, times(1)).loggedOut();
+    }
+
     public List<User> getUsers() {
         User user1 = new User("Arun", "arun@abc.com", "9999999999", "123-4567", hellomd5);
         User user2 = new User("Bala", "bala@abc.com", "9999999999", "012-1234", hellomd5);
