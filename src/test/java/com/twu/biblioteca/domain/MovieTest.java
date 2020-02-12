@@ -18,10 +18,20 @@ class MovieTest {
         assertEquals(getMovieDetails(), movie.getDetails());
     }
 
-    public String getMovieDetails() {
-        return movieName + MOVIE_DETAILS_SEPARATORS + year + MOVIE_DETAILS_SEPARATORS + director + MOVIE_DETAILS_SEPARATORS + rating;
+    @Test
+    void shouldReturnAMovieDetailsWithSpecifiedSeparator() {
+        String customSeparator = " - ";
+        assertEquals(getMovieDetailsWithCustomSeparator(customSeparator), movie.getDetails(customSeparator));
     }
 
+    public String getMovieDetails() {
+        return getMovieDetailsWithCustomSeparator(MOVIE_DETAILS_SEPARATORS);
+
+    }
+
+    private String getMovieDetailsWithCustomSeparator(String customSeparator) {
+        return movieName + customSeparator + year + customSeparator + director + customSeparator + rating;
+    }
 
 
 }

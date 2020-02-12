@@ -16,6 +16,11 @@ public class Movie {
     }
 
     public String getDetails() {
-        return name + MOVIE_DETAILS_SEPARATORS + year + MOVIE_DETAILS_SEPARATORS + director + MOVIE_DETAILS_SEPARATORS + rating;
+        return getDetails(MOVIE_DETAILS_SEPARATORS);
     }
+
+    public String getDetails(String separator) {
+        return name + separator + year + separator + director + separator + rating;
+    }
+
 }
