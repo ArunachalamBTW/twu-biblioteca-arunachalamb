@@ -76,8 +76,13 @@ public class Library implements Notification {
 
         if (loggedInUser != null) {
             if (returnBook.isPresent()) {
-                checkedOutBooks.remove(returnBook.get());
-                notifyUser(SUCCESS_RETURN_MESSAGE_FOR_BOOK);
+                if (loggedInUser.equals(usersCheckedoutBooks.get(bookName))) {
+                    checkedOutBooks.remove(returnBook.get());
+                    usersCheckedoutBooks.remove(bookName);
+                    notifyUser(SUCCESS_RETURN_MESSAGE_FOR_BOOK);
+                } else {
+                    notifyUser(FAIL_RETURN_MESSAGE_FOR_BOOK_BY_DIFFERENT_USER);
+                }
             } else {
                 notifyUser(FAIL_RETURN_MESSAGE_FOR_BOOK);
             }
