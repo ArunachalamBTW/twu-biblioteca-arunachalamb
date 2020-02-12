@@ -56,7 +56,8 @@ public class Menu implements Notification {
                 new MenuOptionReturnBook(),
                 new MenuOptionMovies(),
                 new MenuOptionCheckoutMovie(),
-                new MenuOptionLogin(login)
+                new MenuOptionLogin(login),
+                new MenuOptionCheckedoutBooks()
         ));
     }
 

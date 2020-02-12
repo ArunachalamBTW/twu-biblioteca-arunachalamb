@@ -63,6 +63,20 @@ public class BibliotecaAppTest {
         System.setIn(sysInBackup);
     }
 
+    @Test
+    void shouldShowEmptyCheckoutBooks() {
+        InputStream sysInBackup = System.in;
+        String input = "7\n8";
+        ByteArrayInputStream input1 = new ByteArrayInputStream(input.getBytes());
+        System.setIn(input1);
+        BibliotecaApp bibliotecaApp = new BibliotecaApp();
+
+        bibliotecaApp.start();
+
+        assertEquals(WELCOME_MESSAGE + NEW_LINE + MENU_OPTIONS + NEW_LINE + MENU_OPTIONS + NEW_LINE, consoleOutContent.toString());
+        System.setIn(sysInBackup);
+    }
+
     public String defaultBooksListString() {
         return "1. Programming Book 1" + BOOK_DETAILS_SEPARATORS + "2000" + BOOK_DETAILS_SEPARATORS + "Martin Fowler\n" +
                 "2. Programming Book 2" + BOOK_DETAILS_SEPARATORS + "2001" + BOOK_DETAILS_SEPARATORS + "Martin Fowler";

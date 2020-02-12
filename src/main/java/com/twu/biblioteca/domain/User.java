@@ -28,4 +28,8 @@ public class User {
     public boolean isSameCredentials(String libraryCode, String password) {
         return this.libraryCode.equals(libraryCode) && this.password.equals(password);
     }
+
+    public String getName() {
+        return name;
+    }
 }

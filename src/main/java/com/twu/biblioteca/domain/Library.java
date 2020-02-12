@@ -97,6 +97,13 @@ public class Library implements Notification {
         }
     }
 
+    public void showCheckedoutBooks() {
+        for (Map.Entry checkedoutBook : usersCheckedoutBooks.entrySet()) {
+            User user = (User) checkedoutBook.getValue();
+            notifyUser(checkedoutBook.getKey() + SPACE + HYPHEN + SPACE + user.getName());
+        }
+    }
+
     public void notifyUser(String message) {
         screen.displayMessage(message);
     } // TODO - using statics. What is the problem? Library is a liar. - Its needs sout to work. Doesn't say so.
