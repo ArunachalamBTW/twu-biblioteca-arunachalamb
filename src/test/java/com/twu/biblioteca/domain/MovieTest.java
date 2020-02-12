@@ -31,6 +31,11 @@ class MovieTest {
         assertTrue(movie.isSameByName("Interstellar"));
     }
 
+    @Test
+    void shouldReturnFalseForDifferentMovieName() {
+        assertFalse(movie.isSameByName("Prestige"));
+    }
+
     public String getMovieDetails() {
         return getMovieDetailsWithCustomSeparator(MOVIE_DETAILS_SEPARATORS);
 
