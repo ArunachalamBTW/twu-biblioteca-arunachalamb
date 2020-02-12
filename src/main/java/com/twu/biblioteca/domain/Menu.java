@@ -2,10 +2,7 @@ package com.twu.biblioteca.domain;
 
 import com.twu.biblioteca.console.Input;
 import com.twu.biblioteca.console.Screen;
-import com.twu.biblioteca.domain.menu_options.MenuOptionCheckout;
-import com.twu.biblioteca.domain.menu_options.MenuOptionLibraryBooks;
-import com.twu.biblioteca.domain.menu_options.MenuOptionReturnBook;
-import com.twu.biblioteca.domain.menu_options.MenuOptions;
+import com.twu.biblioteca.domain.menu_options.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,7 +22,7 @@ public class Menu {
 
     public void mainMenu() {
         List<MenuOptions> menuOptions = getMenuOptions();
-        int userChoice = -1;
+        int userChoice;
 
         while (true) {
             screen.displayMenu();
@@ -48,7 +45,7 @@ public class Menu {
     }
 
     private List<MenuOptions> getMenuOptions() {
-        return new ArrayList<>(Arrays.asList(new MenuOptionLibraryBooks(), new MenuOptionCheckout(), new MenuOptionReturnBook()));
+        return new ArrayList<>(Arrays.asList(new MenuOptionBooks(), new MenuOptionCheckout(), new MenuOptionReturnBook(), new MenuOptionMovies()));
     }
 
 }

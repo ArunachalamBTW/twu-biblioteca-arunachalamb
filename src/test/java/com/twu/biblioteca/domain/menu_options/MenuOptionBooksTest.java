@@ -18,7 +18,7 @@ import java.util.List;
 
 import static org.mockito.Mockito.*;
 
-class MenuOptionLibraryBooksTest {
+class MenuOptionBooksTest {
 
     private static List<Movie> movies;
     private ByteArrayOutputStream consoleOutContent;
@@ -57,7 +57,7 @@ class MenuOptionLibraryBooksTest {
     @Test
     void shouldDisplayBooksInALibrary() {
         InputStream sysInBackup = System.in;
-        MenuOptions menuOption = new MenuOptionLibraryBooks();
+        MenuOptions menuOption = new MenuOptionBooks();
 
         menuOption.execute(mockedLibrary);
 
