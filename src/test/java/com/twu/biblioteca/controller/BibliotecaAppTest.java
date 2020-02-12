@@ -38,7 +38,7 @@ public class BibliotecaAppTest {
     @Test
     void shouldSelectFirstMenuOptionToListBooks() {
         InputStream sysInBackup = System.in; // backup System.in to restore it later
-        String input = "1" + NEW_LINE + "4";
+        String input = "1" + NEW_LINE + MAIN_MENU_QUIT;
         ByteArrayInputStream input1 = new ByteArrayInputStream(input.getBytes());
         System.setIn(input1);
         BibliotecaApp bibliotecaApp = new BibliotecaApp();
@@ -52,7 +52,7 @@ public class BibliotecaAppTest {
     @Test
     void shouldNotifyWhenInvalidOptionIsSelected() {
         InputStream sysInBackup = System.in;
-        String input = "9" + NEW_LINE + "4";
+        String input = "9" + NEW_LINE + MAIN_MENU_QUIT;
         ByteArrayInputStream input1 = new ByteArrayInputStream(input.getBytes());
         System.setIn(input1);
         BibliotecaApp bibliotecaApp = new BibliotecaApp();

@@ -45,7 +45,13 @@ public class Menu {
     }
 
     private List<MenuOptions> getMenuOptions() {
-        return new ArrayList<>(Arrays.asList(new MenuOptionBooks(), new MenuOptionCheckout(), new MenuOptionReturnBook(), new MenuOptionMovies()));
+        return new ArrayList<>(Arrays.asList(
+                new MenuOptionBooks(),
+                new MenuOptionCheckout(),
+                new MenuOptionReturnBook(),
+                new MenuOptionMovies(),
+                new MenuOptionCheckoutMovie()
+        ));
     }
 
 }

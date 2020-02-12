@@ -15,8 +15,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.twu.biblioteca.config.GlobalConstants.BOOK_DETAILS_SEPARATORS;
-import static com.twu.biblioteca.config.GlobalConstants.NEW_LINE;
+import static com.twu.biblioteca.config.GlobalConstants.*;
 import static com.twu.biblioteca.console.ConsoleConstants.MENU_OPTIONS;
 import static com.twu.biblioteca.controller.ControllerConstants.INVALID_OPTION;
 import static org.junit.jupiter.api.Assertions.*;
@@ -55,7 +54,7 @@ class MenuTest {
     @Test
     void shouldSelectFirstMenuOptionToListBooks() {
         InputStream sysInBackup = System.in;
-        String input = "1" + NEW_LINE + "4";
+        String input = "1" + NEW_LINE + MAIN_MENU_QUIT;
         ByteArrayInputStream input1 = new ByteArrayInputStream(input.getBytes());
         System.setIn(input1);
         Menu menu = new Menu(library, Screen.getInstance());
@@ -69,7 +68,7 @@ class MenuTest {
     @Test
     void shouldNotifyWhenInvalidOptionIsSelected() {
         InputStream sysInBackup = System.in;
-        String input = "9" + NEW_LINE + "4";
+        String input = "9" + NEW_LINE + MAIN_MENU_QUIT;
         ByteArrayInputStream input1 = new ByteArrayInputStream(input.getBytes());
         System.setIn(input1);
         Menu menu = new Menu(library, Screen.getInstance());
@@ -83,7 +82,7 @@ class MenuTest {
     @Test
     void shouldReturnInvalidOptionIfStringIsEnteredInMenuOption() {
         InputStream sysInBackup = System.in;
-        String input = "asdfawer\n4";
+        String input = "asdfawer\n" + MAIN_MENU_QUIT;
         ByteArrayInputStream input1 = new ByteArrayInputStream(input.getBytes());
         System.setIn(input1);
         Menu menu = new Menu(library, Screen.getInstance());
