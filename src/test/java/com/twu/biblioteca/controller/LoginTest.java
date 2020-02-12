@@ -61,6 +61,15 @@ class LoginTest {
         assertEquals(LOGIN_FAIL + NEW_LINE, consoleOutContent.toString());
     }
 
+    @Test
+    void shouldNotLoginAUserWithInvalidCredentials() {
+        Login login = new Login(getUsers(), Screen.getInstance());
+
+        login.login("123-4567", hellomd5 + "hello");
+
+        assertEquals(LOGIN_FAIL + NEW_LINE, consoleOutContent.toString());
+    }
+
     public List<User> getUsers() {
         User user1 = new User("Arun", "arun@abc.com", "9999999999", "123-4567", hellomd5);
         User user2 = new User("Bala", "bala@abc.com", "9999999999", "012-1234", hellomd5);
