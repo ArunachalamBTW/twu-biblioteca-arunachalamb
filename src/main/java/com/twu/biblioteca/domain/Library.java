@@ -98,9 +98,10 @@ public class Library implements Notification {
     }
 
     public void showCheckedoutBooks() {
+        int counter = 1;
         for (Map.Entry checkedoutBook : usersCheckedoutBooks.entrySet()) {
             User user = (User) checkedoutBook.getValue();
-            notifyUser(checkedoutBook.getKey() + SPACE + HYPHEN + SPACE + user.getName());
+            notifyUser(counter++ + PERIOD + SPACE + checkedoutBook.getKey() + SPACE + HYPHEN + SPACE + user.getName());
         }
     }
 

@@ -14,6 +14,7 @@ import java.io.PrintStream;
 import static com.twu.biblioteca.config.GlobalConstants.*;
 import static com.twu.biblioteca.console.ConsoleConstants.*;
 import static com.twu.biblioteca.controller.ControllerConstants.*;
+import static com.twu.biblioteca.domain.DomainConstants.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BibliotecaAppTest {
@@ -74,6 +75,21 @@ public class BibliotecaAppTest {
         bibliotecaApp.start();
 
         assertEquals(WELCOME_MESSAGE + NEW_LINE + MENU_OPTIONS + NEW_LINE + MENU_OPTIONS + NEW_LINE, consoleOutContent.toString());
+        System.setIn(sysInBackup);
+    }
+
+    @Test
+    void shouldShowOneCheckoutBook() {
+        InputStream sysInBackup = System.in;
+        String input = MAIN_MENU_LOGIN + NEW_LINE + "123-4567" + NEW_LINE + "hello" + NEW_LINE + MAIN_MENU_CHECKOUT_A_BOOK + NEW_LINE + "Programming Book 1" + NEW_LINE + MAIN_MENU_DISPLAY_CHECKEDOUT_BOOKS + NEW_LINE + MAIN_MENU_QUIT;
+        ByteArrayInputStream input1 = new ByteArrayInputStream(input.getBytes());
+        System.setIn(input1);
+        BibliotecaApp bibliotecaApp = new BibliotecaApp();
+
+        bibliotecaApp.start();
+
+        String expectedCheckedoutBooks = "1. Programming Book 1 - Arun";
+        assertEquals(WELCOME_MESSAGE + NEW_LINE + MENU_OPTIONS + NEW_LINE + GET_USER_CODE + NEW_LINE + GET_PASSWORD + NEW_LINE + LOGIN_SUCCESS + NEW_LINE + MENU_OPTIONS + NEW_LINE + GET_BOOK_NAME + NEW_LINE + SUCCESS_CHECKOUT_MESSAGE_FOR_BOOK + NEW_LINE + MENU_OPTIONS + NEW_LINE + expectedCheckedoutBooks + NEW_LINE + MENU_OPTIONS + NEW_LINE, consoleOutContent.toString());
         System.setIn(sysInBackup);
     }
 
