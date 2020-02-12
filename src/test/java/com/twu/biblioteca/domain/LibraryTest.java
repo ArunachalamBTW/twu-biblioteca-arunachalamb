@@ -73,7 +73,7 @@ public class LibraryTest {
     }
 
     @Test
-    void shouldCheckOutBookWithSameName() {
+    void shouldNotCheckOutWithoutLogin() {
         Library library = new Library(books, movies, Screen.getInstance());
         String bookDetails = "";
         bookDetails += library.getAllBooks();
@@ -81,8 +81,8 @@ public class LibraryTest {
         library.checkoutBook("Programming Book 1");
 
         bookDetails += library.getAllBooks();
-        assertEquals(SUCCESS_CHECKOUT_MESSAGE_FOR_BOOK, consoleOutContent.toString().trim());
-        assertEquals(defaultBooksListDetails() + NEW_LINE + getSecondBookDetails() + NEW_LINE, bookDetails);
+        assertEquals(CHECKOUT_WITHOUT_LOGIN, consoleOutContent.toString().trim());
+        assertEquals(defaultBooksListDetails() + NEW_LINE + defaultBooksListDetails() + NEW_LINE, bookDetails);
     }
 
     @Test
@@ -125,7 +125,7 @@ public class LibraryTest {
     }
 
     @Test
-    void shouldReturnTheBookToTheLibrary() {
+    void shouldNotReturnTheBookToTheLibraryWithoutCheckout() {
         String programmingBook = "Programming Book 1";
         Library library = new Library(books, movies, Screen.getInstance());
         String bookDetails = "";
@@ -136,12 +136,12 @@ public class LibraryTest {
         library.returnBook(programmingBook);
         bookDetails += library.getAllBooks();
 
-        assertEquals(SUCCESS_CHECKOUT_MESSAGE_FOR_BOOK + NEW_LINE + SUCCESS_RETURN_MESSAGE_FOR_BOOK + NEW_LINE, consoleOutContent.toString());
-        assertEquals(defaultBooksListDetails() + NEW_LINE + getSecondBookDetails() + NEW_LINE + defaultBooksListDetails() + NEW_LINE, bookDetails);
+        assertEquals(CHECKOUT_WITHOUT_LOGIN + NEW_LINE + FAIL_RETURN_MESSAGE_FOR_BOOK + NEW_LINE, consoleOutContent.toString());
+        assertEquals(defaultBooksListDetails() + NEW_LINE + defaultBooksListDetails() + NEW_LINE + defaultBooksListDetails() + NEW_LINE, bookDetails);
     }
 
     @Test
-    void shouldNotReturnAWrongBook() {
+    void shouldNotReturnAWrongBookWithoutLogin() {
         String programmingBook = "Programming Book 1";
         String wrongBook = "Prog Book 1";
         Library library = new Library(books, movies, Screen.getInstance());
@@ -153,8 +153,8 @@ public class LibraryTest {
         library.returnBook(wrongBook);
         bookDetails += library.getAllBooks();
 
-        assertEquals(SUCCESS_CHECKOUT_MESSAGE_FOR_BOOK + NEW_LINE + FAIL_RETURN_MESSAGE_FOR_BOOK + NEW_LINE, consoleOutContent.toString());
-        assertEquals(defaultBooksListDetails() + NEW_LINE + getSecondBookDetails() + NEW_LINE + getSecondBookDetails() + NEW_LINE, bookDetails);
+        assertEquals(CHECKOUT_WITHOUT_LOGIN + NEW_LINE + FAIL_RETURN_MESSAGE_FOR_BOOK + NEW_LINE, consoleOutContent.toString());
+        assertEquals(defaultBooksListDetails() + NEW_LINE + defaultBooksListDetails() + NEW_LINE + defaultBooksListDetails() + NEW_LINE, bookDetails);
     }
 
     public String defaultBooksListDetails() {

@@ -1,12 +1,11 @@
 package com.twu.biblioteca.controller;
 
 import com.twu.biblioteca.console.Screen;
-import com.twu.biblioteca.domain.Book;
-import com.twu.biblioteca.domain.Library;
-import com.twu.biblioteca.domain.Menu;
-import com.twu.biblioteca.domain.Movie;
+import com.twu.biblioteca.domain.*;
+import com.twu.biblioteca.services.Notification;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 // TODO - think about - SRP, OCP for this class. List it down.
@@ -27,7 +26,10 @@ public class BibliotecaApp {
         Screen.getInstance().displayWelcomeMessage();
 //        Use Menu implementation here - TODO what does that mean? Try doing it and show it again.
         menu = new Menu(library, Screen.getInstance());
-        menu.mainMenu();
+
+        Login login = new Login(getDefaultUsers(), getDefaultNotifiers(), Screen.getInstance());
+
+        menu.mainMenu(login);
     }
 
     private void initializeLibrary() {
@@ -52,4 +54,15 @@ public class BibliotecaApp {
         movies.add(movie2);
         return movies;
     }
+
+    private List<User> getDefaultUsers() {
+        User user1 = new User("Arun", "arun@abc.com", "9999999999", "123-4567", "hello");
+        User user2 = new User("Bala", "bala@abc.com", "9999999999", "012-1234", "hello");
+        return new ArrayList<>(Arrays.asList(user1, user2));
+    }
+
+    private List<Notification> getDefaultNotifiers() {
+        return new ArrayList<>(Arrays.asList(library, menu));
+    }
+
 }

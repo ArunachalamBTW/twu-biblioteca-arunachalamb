@@ -2,6 +2,7 @@ package com.twu.biblioteca.domain;
 
 import com.twu.biblioteca.console.Input;
 import com.twu.biblioteca.console.Screen;
+import com.twu.biblioteca.controller.Login;
 import com.twu.biblioteca.domain.menu_options.*;
 import com.twu.biblioteca.services.Notification;
 
@@ -16,13 +17,15 @@ public class Menu implements Notification {
     private Library library;
     private Screen screen;
     private User loggedInUser;
+    private Login login;
 
     public Menu(Library library, Screen screen) {
         this.library = library;
         this.screen = screen;
     }
 
-    public void mainMenu() {
+    public void mainMenu(Login login) {
+        this.login = login;
         List<MenuOptions> menuOptions = getMenuOptions();
         int userChoice;
 
@@ -52,7 +55,8 @@ public class Menu implements Notification {
                 new MenuOptionCheckout(),
                 new MenuOptionReturnBook(),
                 new MenuOptionMovies(),
-                new MenuOptionCheckoutMovie()
+                new MenuOptionCheckoutMovie(),
+                new MenuOptionLogin(login)
         ));
     }
 

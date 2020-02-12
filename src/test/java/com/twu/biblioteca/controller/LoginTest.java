@@ -1,12 +1,10 @@
 package com.twu.biblioteca.controller;
 
-import com.twu.biblioteca.console.Input;
 import com.twu.biblioteca.console.Screen;
 import com.twu.biblioteca.domain.Library;
 import com.twu.biblioteca.domain.Menu;
 import com.twu.biblioteca.domain.User;
 import com.twu.biblioteca.services.Notification;
-import org.graalvm.compiler.lir.LIR;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -54,41 +52,41 @@ class LoginTest {
 
     @Test
     void shouldReturnFalseIfNoUserLoggedIn() {
-        Login login = Login.getInstance(getUsers(), notifiers, Screen.getInstance());
+        Login login = new Login(getUsers(), notifiers, Screen.getInstance());
         assertFalse(login.isAnyOneLoggedIn());
     }
 
     @Test
     void shouldLoginARegisteredUser() {
-        Login login = Login.getInstance(getUsers(), notifiers, Screen.getInstance());
+        Login login = new Login(getUsers(), notifiers, Screen.getInstance());
 
-        login.login("123-4567", hellomd5);
+        login.doLogin("123-4567", hellomd5);
 
         assertEquals(LOGIN_SUCCESS + NEW_LINE, consoleOutContent.toString());
     }
 
     @Test
     void shouldNotLoginAUnRegisteredUser() {
-        Login login = Login.getInstance(getUsers(), notifiers, Screen.getInstance());
+        Login login = new Login(getUsers(), notifiers, Screen.getInstance());
 
-        login.login("123-45678", hellomd5);
+        login.doLogin("123-45678", hellomd5);
 
         assertEquals(LOGIN_FAIL + NEW_LINE, consoleOutContent.toString());
     }
 
     @Test
     void shouldNotLoginAUserWithInvalidCredentials() {
-        Login login = Login.getInstance(getUsers(), notifiers, Screen.getInstance());
+        Login login = new Login(getUsers(), notifiers, Screen.getInstance());
 
-        login.login("123-4567", hellomd5 + "hello");
+        login.doLogin("123-4567", hellomd5 + "hello");
 
         assertEquals(LOGIN_FAIL + NEW_LINE, consoleOutContent.toString());
     }
 
     @Test
     void shouldLogoutWhenUserIsLoggedIn() {
-        Login login = Login.getInstance(getUsers(), notifiers, Screen.getInstance());
-        login.login("123-4567", hellomd5);
+        Login login = new Login(getUsers(), notifiers, Screen.getInstance());
+        login.doLogin("123-4567", hellomd5);
 
         login.logout();
 
@@ -97,8 +95,8 @@ class LoginTest {
 
     @Test
     void shouldNotLogoutWhenUserIsNotLoggedIn() {
-        Login login = Login.getInstance(getUsers(), notifiers, Screen.getInstance());
-        login.login("123-45678", hellomd5);
+        Login login = new Login(getUsers(), notifiers, Screen.getInstance());
+        login.doLogin("123-45678", hellomd5);
 
         login.logout();
 
@@ -109,9 +107,9 @@ class LoginTest {
     void shouldNotifyAllIfUserLogInSuccessfully() {
         User user1 = getUsers().get(0);
         User user2 = getUsers().get(1);
-        Login login = Login.getInstance(new ArrayList<>(Arrays.asList(user1, user2)), notifiers, Screen.getInstance());
+        Login login = new Login(new ArrayList<>(Arrays.asList(user1, user2)), notifiers, Screen.getInstance());
 
-        login.login("123-4567", hellomd5);
+        login.doLogin("123-4567", hellomd5);
 
         verify(mockedLibrary, times(1)).loggedIn(user1);
         verify(mockedMenu, times(1)).loggedIn(user1);
@@ -121,9 +119,9 @@ class LoginTest {
     void shouldNotNotifyAllIfUserLogInFailed() {
         User user1 = getUsers().get(0);
         User user2 = getUsers().get(1);
-        Login login = Login.getInstance(new ArrayList<>(Arrays.asList(user1, user2)), notifiers, Screen.getInstance());
+        Login login = new Login(new ArrayList<>(Arrays.asList(user1, user2)), notifiers, Screen.getInstance());
 
-        login.login("123-45678", hellomd5);
+        login.doLogin("123-45678", hellomd5);
 
         verify(mockedLibrary, times(0)).loggedIn(user1);
         verify(mockedMenu, times(0)).loggedIn(user1);
@@ -133,9 +131,9 @@ class LoginTest {
     void shouldNotifyAllIfUserLogoutSuccessfully() {
         User user1 = getUsers().get(0);
         User user2 = getUsers().get(1);
-        Login login = Login.getInstance(new ArrayList<>(Arrays.asList(user1, user2)), notifiers, Screen.getInstance());
+        Login login = new Login(new ArrayList<>(Arrays.asList(user1, user2)), notifiers, Screen.getInstance());
 
-        login.login("123-4567", hellomd5);
+        login.doLogin("123-4567", hellomd5);
         login.logout();
 
         verify(mockedLibrary, times(1)).loggedIn(user1);
@@ -148,9 +146,9 @@ class LoginTest {
     void shouldNotNotifyAllIfUserLogoutWithoutLogin() {
         User user1 = getUsers().get(0);
         User user2 = getUsers().get(1);
-        Login login = Login.getInstance(new ArrayList<>(Arrays.asList(user1, user2)), notifiers, Screen.getInstance());
+        Login login = new Login(new ArrayList<>(Arrays.asList(user1, user2)), notifiers, Screen.getInstance());
 
-        login.login("123-45678", hellomd5);
+        login.doLogin("123-45678", hellomd5);
 
         verify(mockedLibrary, times(0)).loggedIn(user1);
         verify(mockedMenu, times(0)).loggedIn(user1);

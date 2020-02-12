@@ -2,8 +2,8 @@ package com.twu.biblioteca.domain;
 
 import com.twu.biblioteca.console.Input;
 import com.twu.biblioteca.console.Screen;
+import com.twu.biblioteca.controller.Login;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -19,6 +19,7 @@ import static com.twu.biblioteca.config.GlobalConstants.*;
 import static com.twu.biblioteca.console.ConsoleConstants.MENU_OPTIONS;
 import static com.twu.biblioteca.controller.ControllerConstants.INVALID_OPTION;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
 
 class MenuTest {
     private ByteArrayOutputStream consoleOutContent;
@@ -26,6 +27,7 @@ class MenuTest {
     private List<Book> books;
     private Library library;
     private List<Movie> movies;
+    private Login login;
 
     @BeforeEach
     public void setUpStreams() {
@@ -40,6 +42,8 @@ class MenuTest {
         Movie movie1 = new Movie("Interstellar", 2020, "Christopher Nolan", 10);
         Movie movie2 = new Movie("2.0", 2019, "Shankar", 10);
         movies = new ArrayList<>(Arrays.asList(movie1, movie2));
+
+        login = mock(Login.class);
 
         library = new Library(books, movies, Screen.getInstance());
     }
@@ -59,7 +63,7 @@ class MenuTest {
         System.setIn(input1);
         Menu menu = new Menu(library, Screen.getInstance());
 
-        menu.mainMenu();
+        menu.mainMenu(login);
 
         assertEquals(MENU_OPTIONS + NEW_LINE + defaultBookListDetails() + NEW_LINE + NEW_LINE + MENU_OPTIONS + NEW_LINE, consoleOutContent.toString());
         System.setIn(sysInBackup);
@@ -73,7 +77,7 @@ class MenuTest {
         System.setIn(input1);
         Menu menu = new Menu(library, Screen.getInstance());
 
-        menu.mainMenu();
+        menu.mainMenu(login);
 
         assertEquals(MENU_OPTIONS + NEW_LINE + INVALID_OPTION + NEW_LINE + MENU_OPTIONS + NEW_LINE, consoleOutContent.toString());
         System.setIn(sysInBackup);
@@ -87,7 +91,7 @@ class MenuTest {
         System.setIn(input1);
         Menu menu = new Menu(library, Screen.getInstance());
 
-        menu.mainMenu();
+        menu.mainMenu(login);
 
         assertEquals(MENU_OPTIONS + NEW_LINE + INVALID_OPTION + NEW_LINE + MENU_OPTIONS + NEW_LINE, consoleOutContent.toString());
         System.setIn(sysInBackup);

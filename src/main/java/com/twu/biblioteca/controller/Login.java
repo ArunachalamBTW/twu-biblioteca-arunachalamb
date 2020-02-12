@@ -17,25 +17,29 @@ public class Login {
     private static Login login;
     private List<Notification> notifiers;
 
-    private Login(List<User> allUsers, List<Notification> notifiers, Screen screen) {
+    public Login(List<User> allUsers, List<Notification> notifiers, Screen screen) {
         this.allUsers = allUsers;
         this.screen = screen;
         this.notifiers = notifiers;
         loggedInUser = null;
     }
 
-    public static Login getInstance(List<User> allUsers, List<Notification> notifiers, Screen screen) {
-        if (login == null) {
-            return new Login(allUsers, notifiers, screen);
-        }
-        return login;
-    }
+//    public static Login getInstance(List<User> allUsers, List<Notification> notifiers, Screen screen) {
+//        if (login == null) {
+//            login = new Login(allUsers, notifiers, screen);
+//        }
+//        return login;
+//    }
+
+//    public static Login getInstance() {
+//        return login;
+//    }
 
     public boolean isAnyOneLoggedIn() {
         return loggedInUser != null;
     }
 
-    public void login(String libraryCode, String password) {
+    public void doLogin(String libraryCode, String password) {
         Optional<User> loggedInUser = allUsers.stream().filter(user -> user.isSameCredentials(libraryCode, password)).findFirst();
 
         if (loggedInUser.isPresent()) {

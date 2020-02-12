@@ -2,10 +2,12 @@ package com.twu.biblioteca.domain.menu_options;
 
 import com.twu.biblioteca.console.Input;
 import com.twu.biblioteca.console.Screen;
+import com.twu.biblioteca.controller.Login;
 import com.twu.biblioteca.domain.Book;
 import com.twu.biblioteca.domain.Library;
 import com.twu.biblioteca.domain.Movie;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -19,22 +21,17 @@ import java.util.List;
 
 import static org.mockito.Mockito.*;
 
-class MenuOptionCheckoutTest {
+class MenuOptionLoginTest {
+
+    private static List<Movie> movies;
     private ByteArrayOutputStream consoleOutContent;
     private PrintStream printStream;
-    private List<Book> books;
-    private Library library;
-    private Screen screen = Screen.getInstance();
+    private static List<Book> books;
+    private static Library library;
     private Library mockedLibrary;
-    private List<Movie> movies;
 
-    @BeforeEach
-    public void setUpStreams() {
-        printStream = System.out;
-        consoleOutContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(consoleOutContent));
-        mockedLibrary = mock(Library.class);
-
+    @BeforeAll
+    public static void initTest() {
         Book book1 = new Book("Programming Book 1", 2000, "Martin Fowler");
         Book book2 = new Book("Programming Book 2", 2001, "Martin Fowler");
         books = new ArrayList<>(Arrays.asList(book1, book2));
@@ -43,7 +40,15 @@ class MenuOptionCheckoutTest {
         Movie movie2 = new Movie("2.0", 2019, "Shankar", 10);
         movies = new ArrayList<>(Arrays.asList(movie1, movie2));
 
-        library = new Library(books, movies, screen);
+        library = new Library(books, movies, Screen.getInstance());
+    }
+
+    @BeforeEach
+    public void setUpStreams() {
+        printStream = System.out;
+        consoleOutContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(consoleOutContent));
+        mockedLibrary = mock(Library.class);
     }
 
     @AfterEach
@@ -54,16 +59,19 @@ class MenuOptionCheckoutTest {
     }
 
     @Test
-    void shouldCheckoutABookFromLibrary() {
+    void shouldLoginUserInALibrary() {
         InputStream sysInBackup = System.in;
-        String bookName = "Programming Book 1";
-        ByteArrayInputStream input1 = new ByteArrayInputStream(bookName.getBytes());
-        System.setIn(input1);
-        MenuOptions checkoutBook = new MenuOptionCheckout();
+        String userCode = "123-4567";
+        String password = "hello";
+        String input = userCode + "\n" + password;
+        ByteArrayInputStream userCodeInput = new ByteArrayInputStream(input.getBytes());
+        System.setIn(userCodeInput);
+        Login login = mock(Login.class);
+        MenuOptions userLogin = new MenuOptionLogin(login);
 
-        checkoutBook.execute(mockedLibrary);
+        userLogin.execute(mockedLibrary);
 
-        verify(mockedLibrary, times(1)).checkoutBook(bookName);
+        verify(login, times(1)).doLogin(userCode, password);
         System.setIn(sysInBackup);
     }
 

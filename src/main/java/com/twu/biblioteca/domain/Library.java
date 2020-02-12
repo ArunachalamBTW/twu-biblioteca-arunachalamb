@@ -14,6 +14,7 @@ public class Library implements Notification {
     private List<Book> checkedOutBooks; // TODO - name again - probably will use past tense
     private List<Movie> allMovies;
     private Map<String, Movie> checkedoutMovies;
+    private Map<String, User> usersCheckedoutBooks;
     private User loggedInUser;
 
     public Library(List<Book> allBooks, List<Movie> allMovies, Screen screen) {
@@ -22,6 +23,7 @@ public class Library implements Notification {
         this.allMovies = allMovies;
         this.checkedOutBooks = new ArrayList<>();
         this.checkedoutMovies = new HashMap<>();
+        this.usersCheckedoutBooks = new HashMap<>();
     }
 
     public String getAllBooks() { // TODO - what's display? Liar. // TODO - why ALL?
@@ -57,8 +59,13 @@ public class Library implements Notification {
         Optional<Book> checkoutBook = allBooks.stream().filter(book -> book.isSameByName(bookName)).filter(book -> !checkedOutBooks.contains(book)).findFirst();
 
         if (checkoutBook.isPresent()) {
-            checkedOutBooks.add(checkoutBook.get());
-            notifyUser(SUCCESS_CHECKOUT_MESSAGE_FOR_BOOK);
+            if (loggedInUser != null) {
+                checkedOutBooks.add(checkoutBook.get());
+                usersCheckedoutBooks.put(bookName, loggedInUser);
+                notifyUser(SUCCESS_CHECKOUT_MESSAGE_FOR_BOOK);
+            } else {
+                notifyUser(CHECKOUT_WITHOUT_LOGIN);
+            }
         } else {
             notifyUser(FAIL_CHECKOUT_MESSAGE_FOR_BOOK);
         }
