@@ -4,6 +4,7 @@ import com.twu.biblioteca.console.Input;
 import com.twu.biblioteca.console.Screen;
 import com.twu.biblioteca.domain.Book;
 import com.twu.biblioteca.domain.Library;
+import com.twu.biblioteca.domain.Movie;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -27,6 +28,7 @@ class MenuOptionReturnBookTest {
     private Library library;
     private Screen screen = Screen.getInstance();
     private Library mockedLibrary;
+    private List<Movie> movies;
 
     @BeforeAll
     public static void initTest() {
@@ -43,7 +45,12 @@ class MenuOptionReturnBookTest {
         Book book1 = new Book("Programming Book 1", 2000, "Martin Fowler");
         Book book2 = new Book("Programming Book 2", 2001, "Martin Fowler");
         books = new ArrayList<>(Arrays.asList(book1, book2));
-        library = new Library(books, screen);
+
+        Movie movie1 = new Movie("Interstellar", 2020, "Christopher Nolan", 10);
+        Movie movie2 = new Movie("2.0", 2019, "Shankar", 10);
+        movies = new ArrayList<>(Arrays.asList(movie1, movie2));
+
+        library = new Library(books, movies, screen);
     }
 
     @AfterEach

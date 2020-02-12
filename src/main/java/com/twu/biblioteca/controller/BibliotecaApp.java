@@ -4,6 +4,7 @@ import com.twu.biblioteca.console.Screen;
 import com.twu.biblioteca.domain.Book;
 import com.twu.biblioteca.domain.Library;
 import com.twu.biblioteca.domain.Menu;
+import com.twu.biblioteca.domain.Movie;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +30,7 @@ public class BibliotecaApp {
 
     private void initializeLibrary() {
         // TODO - why not inline?
-        library = new Library(getDefaultBooks(), Screen.getInstance());
+        library = new Library(getDefaultBooks(), getDefaultMovies(), Screen.getInstance());
     }
 
     private List<Book> getDefaultBooks() {
@@ -39,5 +40,14 @@ public class BibliotecaApp {
         books.add(book1);
         books.add(book2);
         return books;
+    }
+
+    private List<Movie> getDefaultMovies() {
+        Movie movie1 = new Movie("Interstellar", 2020, "Christopher Nolan", 10);
+        Movie movie2 = new Movie("2.0", 2019, "Shankar", 10);
+        List<Movie> movies = new ArrayList<>();
+        movies.add(movie1);
+        movies.add(movie2);
+        return movies;
     }
 }
