@@ -38,4 +38,13 @@ public class Login {
     private void notifyUser(String message) {
         screen.displayMessage(message);
     }
+
+    public void logout() {
+        if (loggedInUser == null) {
+            notifyUser(LOGOUT_FAIL);
+        } else {
+            loggedInUser = null;
+            notifyUser(LOGOUT_SUCCESS);
+        }
+    }
 }
