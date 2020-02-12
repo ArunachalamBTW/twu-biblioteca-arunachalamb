@@ -40,9 +40,7 @@ public class Library {
         int countOfMovies = 1;
         for (Movie movie : allMovies) {
             String movieDetails = "";
-            if (!checkedOutBooks.contains(movie)) {
-                movieDetails += countOfMovies++ + PERIOD + SPACE + movie.getDetails() + NEW_LINE;
-            }
+            movieDetails += countOfMovies++ + PERIOD + SPACE + movie.getDetails() + NEW_LINE;
             allMovieDetails.append(movieDetails);
         }
         return allMovieDetails.toString();
