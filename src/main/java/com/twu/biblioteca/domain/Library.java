@@ -74,11 +74,15 @@ public class Library implements Notification {
     public void returnBook(String bookName) {
         Optional<Book> returnBook = checkedOutBooks.stream().filter(book -> book.isSameByName(bookName)).findFirst();
 
-        if (returnBook.isPresent()) {
-            checkedOutBooks.remove(returnBook.get());
-            notifyUser(SUCCESS_RETURN_MESSAGE_FOR_BOOK);
+        if (loggedInUser != null) {
+            if (returnBook.isPresent()) {
+                checkedOutBooks.remove(returnBook.get());
+                notifyUser(SUCCESS_RETURN_MESSAGE_FOR_BOOK);
+            } else {
+                notifyUser(FAIL_RETURN_MESSAGE_FOR_BOOK);
+            }
         } else {
-            notifyUser(FAIL_RETURN_MESSAGE_FOR_BOOK);
+            notifyUser(RETURN_WITHOUT_LOGIN);
         }
     }
 

@@ -136,7 +136,7 @@ public class LibraryTest {
         library.returnBook(programmingBook);
         bookDetails += library.getAllBooks();
 
-        assertEquals(CHECKOUT_WITHOUT_LOGIN + NEW_LINE + FAIL_RETURN_MESSAGE_FOR_BOOK + NEW_LINE, consoleOutContent.toString());
+        assertEquals(CHECKOUT_WITHOUT_LOGIN + NEW_LINE + RETURN_WITHOUT_LOGIN + NEW_LINE, consoleOutContent.toString());
         assertEquals(defaultBooksListDetails() + NEW_LINE + defaultBooksListDetails() + NEW_LINE + defaultBooksListDetails() + NEW_LINE, bookDetails);
     }
 
@@ -153,8 +153,22 @@ public class LibraryTest {
         library.returnBook(wrongBook);
         bookDetails += library.getAllBooks();
 
-        assertEquals(CHECKOUT_WITHOUT_LOGIN + NEW_LINE + FAIL_RETURN_MESSAGE_FOR_BOOK + NEW_LINE, consoleOutContent.toString());
+        assertEquals(CHECKOUT_WITHOUT_LOGIN + NEW_LINE + RETURN_WITHOUT_LOGIN + NEW_LINE, consoleOutContent.toString());
         assertEquals(defaultBooksListDetails() + NEW_LINE + defaultBooksListDetails() + NEW_LINE + defaultBooksListDetails() + NEW_LINE, bookDetails);
+    }
+
+    @Test
+    void shouldNotReturnABookWithoutLogin() {
+        String programmingBook = "Programming Book 1";
+        Library library = new Library(books, movies, Screen.getInstance());
+        String bookDetails = "";
+
+        bookDetails += library.getAllBooks();
+        library.returnBook(programmingBook);
+        bookDetails += library.getAllBooks();
+
+        assertEquals(RETURN_WITHOUT_LOGIN + NEW_LINE, consoleOutContent.toString());
+        assertEquals(defaultBooksListDetails() + NEW_LINE + defaultBooksListDetails() + NEW_LINE, bookDetails);
     }
 
     public String defaultBooksListDetails() {

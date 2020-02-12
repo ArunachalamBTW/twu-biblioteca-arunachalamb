@@ -24,17 +24,6 @@ public class Login {
         loggedInUser = null;
     }
 
-//    public static Login getInstance(List<User> allUsers, List<Notification> notifiers, Screen screen) {
-//        if (login == null) {
-//            login = new Login(allUsers, notifiers, screen);
-//        }
-//        return login;
-//    }
-
-//    public static Login getInstance() {
-//        return login;
-//    }
-
     public boolean isAnyOneLoggedIn() {
         return loggedInUser != null;
     }
