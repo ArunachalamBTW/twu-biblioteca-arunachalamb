@@ -66,6 +66,13 @@ public class LibraryTest {
     }
 
     @Test
+    void shouldShowAllMoviesInLibrary() {
+        Library library = new Library(new ArrayList<>(), movies, Screen.getInstance());
+
+        assertEquals(defaultMoviesListDetails() + NEW_LINE, library.getAllMovies());
+    }
+
+    @Test
     void shouldCheckOutBookWithSameName() {
         Library library = new Library(books, movies, Screen.getInstance());
         String bookDetails = "";
@@ -137,11 +144,25 @@ public class LibraryTest {
         return "1. Programming Book 2" + BOOK_DETAILS_SEPARATORS + "2001" + BOOK_DETAILS_SEPARATORS + "Martin Fowler";
     }
 
+    public String defaultMoviesListDetails() {
+        return getFirstMovieDetails() + NEW_LINE + getSecondMovieDetails();
+    }
+
     public String getFirstMovieDetails() {
         int count = 1;
         String movieName = "Interstellar";
         String director = "Christopher Nolan";
         int year = 2020;
+        float rating = 10;
+        String separator = MOVIE_DETAILS_SEPARATORS;
+        return count + PERIOD + SPACE + movieName + separator + year + separator + director + separator + rating;
+    }
+
+    public String getSecondMovieDetails() {
+        int count = 2;
+        String movieName = "2.0";
+        String director = "Shankar";
+        int year = 2019;
         float rating = 10;
         String separator = MOVIE_DETAILS_SEPARATORS;
         return count + PERIOD + SPACE + movieName + separator + year + separator + director + separator + rating;
