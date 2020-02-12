@@ -25,4 +25,7 @@ public class User {
         return "Name: " + name + NEW_LINE + "Email: " + email + NEW_LINE + "Phone Number: " + phoneNumber;
     }
 
+    public boolean isSameCredentials(String libraryCode, String password) {
+        return this.libraryCode.equals(libraryCode) && this.password.equals(password);
+    }
 }
